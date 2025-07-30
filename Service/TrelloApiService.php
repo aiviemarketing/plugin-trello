@@ -74,7 +74,7 @@ class TrelloApiService
      */
     public function getFavouriteBoard(): string
     {
-        return $this->coreParametersHelper->get('favorite_board', '');
+        return $this->coreParametersHelper->get('favorite_board', '') ?? '';
     }
 
     /**

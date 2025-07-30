@@ -42,7 +42,6 @@ class CardController extends AbstractFormController
         private LoggerInterface $logger,
         private TrelloApiService $apiService,
         ManagerRegistry $doctrine,
-        MauticFactory $factory,
         ModelFactory $modelFactory,
         UserHelper $userHelper,
         CoreParametersHelper $coreParametersHelper,
@@ -52,7 +51,7 @@ class CardController extends AbstractFormController
         RequestStack $requestStack,
         CorePermissions $security
     ) {
-        parent::__construct($doctrine, $factory, $modelFactory, $userHelper, $coreParametersHelper, $dispatcher, $translator, $flashBag, $requestStack, $security);
+        parent::__construct($doctrine, $modelFactory, $userHelper, $coreParametersHelper, $dispatcher, $translator, $flashBag, $requestStack, $security);
     }
 
     /**
@@ -88,7 +87,7 @@ class CardController extends AbstractFormController
         $returnRoute = $request->get('returnRoute', '');
 
         $contactId =  0;
-        $data      = $request->request->get('new_card', false);
+        $data      = $request->get('new_card', false);
         if (is_array($data) && isset($data['contactId'])) {
             $contactId =  (int) $data['contactId'];
         }

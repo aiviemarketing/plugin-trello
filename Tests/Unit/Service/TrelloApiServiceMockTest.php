@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace MauticPlugin\MauticTrelloBundle\Tests\Unit\Service;
 
 use Mautic\CoreBundle\Helper\CoreParametersHelper;
-use Mautic\PluginBundle\Helper\IntegrationHelper;
+use MauticPlugin\MauticTrelloBundle\Integration\Config;
 use MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Card;
 use MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\TrelloList;
 use MauticPlugin\MauticTrelloBundle\Service\TrelloApiService;
@@ -43,9 +43,9 @@ class TrelloApiServiceMockTest extends TestCase
             ->setMethods(['getApi', 'getFavouriteBoard', 'getListsOnBoard'])
             ->setConstructorArgs(
                 [
-                    $this->createMock(IntegrationHelper::class),
                     $this->createMock(CoreParametersHelper::class),
                     $this->createMock(Logger::class),
+                    $this->createMock(Config::class)
                 ]
             )
             ->getMock();
@@ -59,8 +59,6 @@ class TrelloApiServiceMockTest extends TestCase
         $this->apiService->method('getListsOnBoard')
             ->willReturn([]);
     }
-
-    // public function getListsOnBoard(int $boardId = null): array
 
     /**
      * Get valid Trello lists from mocked API.
@@ -113,24 +111,4 @@ class TrelloApiServiceMockTest extends TestCase
             $this->assertTrue($card->valid());
         }
     }
-
-    // public function testWithPrism(){
-
-    //     // $this->testAddNewCard();
-    //     $newCard = [
-    //         'name'           => 'this is a card name',
-    //         'desc'           => "sample description with some special chars: %'ä.$&",
-    //         'pos'            => 'top',
-    //         'due'            => '2020-06-28T11:14:12.523Z',
-    //         'urlSource'      => 'https://www.mautic.org',
-    //         'keepFromSource' => 'all',
-    //         'idList'         => '5e5c1f8f12326fasd8b6qba6',
-    //     ];
-
-    //     $card = $this->apiService->addNewCard($newCard);
-    //     $this->assertInstanceOf(Card::class, $card);
-    //     if ($card instanceof Card) {
-    //         $this->assertTrue($card->valid());
-    //     }
-    // }
 }
