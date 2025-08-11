@@ -1,26 +1,9 @@
 <?php
 
 declare(strict_types=1);
-/**
- * @copyright 2022 Aivie. All rights reserved
- * @author    Aivie
- *
- * @see https://aivie.ch
- *
- * @license GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
- */
 
-namespace MauticPlugin\MauticTrelloBundle\Tests\Service;
+namespace MauticPlugin\MauticTrelloBundle\Tests\Unit\Service;
 
-use GuzzleHttp\Client as HttpClient;
-use Mautic\CoreBundle\Helper\CoreParametersHelper;
-use Mautic\PluginBundle\Helper\IntegrationHelper;
-use MauticPlugin\MauticTrelloBundle\Openapi\lib\Api\DefaultApi;
-use MauticPlugin\MauticTrelloBundle\Openapi\lib\Configuration;
-use MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Card;
-use MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\TrelloList;
-use MauticPlugin\MauticTrelloBundle\Service\TrelloApiService;
-use Monolog\Logger;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 

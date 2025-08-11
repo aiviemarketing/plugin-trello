@@ -1,43 +1,26 @@
 <?php
 
-namespace MauticPlugin\MauticTrelloBundle\Event;
+declare(strict_types=1);
 
-use Exception;
+namespace MauticPlugin\MauticTrelloBundle\EventListener;
+
 use Mautic\ConfigBundle\ConfigEvents;
 use Mautic\ConfigBundle\Event\ConfigBuilderEvent;
 use Mautic\ConfigBundle\Event\ConfigEvent;
-use Mautic\PluginBundle\Helper\IntegrationHelper;
-use Mautic\PluginBundle\Integration\AbstractIntegration;
 use MauticPlugin\MauticTrelloBundle\Form\ConfigType;
-use MauticPlugin\MauticTrelloBundle\Integration\TrelloIntegration;
-use Monolog\Logger;
+use MauticPlugin\MauticTrelloBundle\Integration\Config;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class ConfigSubscriber implements EventSubscriberInterface
 {
     /**
-     * @var TrelloIntegration|AbstractIntegration|bool
-     */
-    protected $integration;
-
-    /**
-     * @var Logger
-     */
-    protected $logger;
-
-    /**
      * Setup Trello Configuration Subscriber.
      */
-    public function __construct(IntegrationHelper $integrationHelper, Logger $logger)
+    public function __construct(private Config $config)
     {
-        $this->logger       = $logger;
-        $this->integration  = $integrationHelper->getIntegrationObject('Trello');
     }
 
-    /**
-     * @return array
-     */
-    public static function getSubscribedEvents()
+    public static function getSubscribedEvents(): array
     {
         return [
             ConfigEvents::CONFIG_ON_GENERATE => ['onConfigGenerate', 0],
@@ -46,18 +29,18 @@ class ConfigSubscriber implements EventSubscriberInterface
     }
 
     /**
-     * setup the configuration for Trello.
+     * Set up the configuration for Trello.
      */
     public function onConfigGenerate(ConfigBuilderEvent $event): bool
     {
-        if (empty($this->integration) || !$this->integration->isPublished()) {
+        if (!$this->config->isPublished() && !$this->config->isConfigured()) {
             return false;
         }
 
         $event->addForm(
             [
                 'formAlias'  => 'trello_config', // same as in the View filename
-                'formTheme'  => 'MauticTrelloBundle:FormTheme\Config',
+                'formTheme'  => '@MauticTrello/FormTheme/Config/_config_trello_config_widget.html.twig',
                 'formType'   => ConfigType::class,
                 'parameters' => $event->getParametersFromConfig('MauticTrelloBundle'),
             ]
@@ -67,15 +50,10 @@ class ConfigSubscriber implements EventSubscriberInterface
     }
 
     /**
-     * Prepare values before conig is saved to file.
-     *
-     * @return void
+     * Prepare values before config is saved to file.
      */
-    public function onConfigSave(ConfigEvent $event)
+    public function onConfigSave(ConfigEvent $event): void
     {
-        /**
-         * @var array $values
-         */
         $config = $event->getConfig('trello_config');
 
         // Set updated values

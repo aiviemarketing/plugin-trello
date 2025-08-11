@@ -1,49 +1,21 @@
 <?php
 
-/**
- * @author    Aivie
- * @copyright 2022 Aivie. All rights reserved
- *
- * @see https://aivie.ch
- *
- * @license GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
- */
+declare(strict_types=1);
 
 namespace MauticPlugin\MauticTrelloBundle\Form;
 
-use Mautic\LeadBundle\Model\FieldModel;
-use MauticPlugin\MauticTrelloBundle\Openapi\lib\ApiException;
 use MauticPlugin\MauticTrelloBundle\Service\TrelloApiService;
-use Monolog\Logger;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 /**
- * Configure Trello integration in main Mautic Configiguration.
+ * Configure Trello integration in main Mautic Configuration.
  */
 class ConfigType extends AbstractType
 {
-    /**
-     * @var TrelloApiService
-     */
-    private $apiService;
-
-    protected $fieldModel;
-
-    /**
-     * @var Logger
-     */
-    protected $logger;
-
-    /**
-     * ConfigType constructor.
-     */
-    public function __construct(FieldModel $fieldModel, TrelloApiService $trelloApiService, Logger $logger)
+    public function __construct(private TrelloApiService $apiService)
     {
-        $this->fieldModel = $fieldModel;
-        $this->apiService = $trelloApiService;
-        $this->logger     = $logger;
     }
 
     /**
@@ -51,8 +23,6 @@ class ConfigType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $this->fieldModel->getFieldList(false, false);
-
         $builder->add(
             'favorite_board',
             ChoiceType::class,
@@ -65,10 +35,7 @@ class ConfigType extends AbstractType
         );
     }
 
-    /**
-     * @return string
-     */
-    public function getBlockPrefix()
+    public function getBlockPrefix(): string
     {
         return 'trello_config';
     }
@@ -78,8 +45,6 @@ class ConfigType extends AbstractType
      */
     protected function getBoards(): array
     {
-        $boards = array_flip($this->apiService->getBoardsArray());
-
-        return null !== $boards ? $boards : [];
+        return array_flip($this->apiService->getBoardsArray());
     }
 }

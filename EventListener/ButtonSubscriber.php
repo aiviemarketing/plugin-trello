@@ -1,19 +1,15 @@
 <?php
 
-// plugins/MauticTrelloBundle/Event/ButtonSubscriber.php
+declare(strict_types=1);
 
-namespace MauticPlugin\MauticTrelloBundle\Event;
+namespace MauticPlugin\MauticTrelloBundle\EventListener;
 
-use Exception;
 use Mautic\CoreBundle\CoreEvents;
 use Mautic\CoreBundle\Event\CustomButtonEvent;
-use Mautic\CoreBundle\Templating\Helper\ButtonHelper;
+use Mautic\CoreBundle\Twig\Helper\ButtonHelper;
 use Mautic\LeadBundle\Entity\Lead;
-use Mautic\PluginBundle\Helper\IntegrationHelper;
-use Mautic\PluginBundle\Integration\AbstractIntegration;
-use MauticPlugin\MauticTrelloBundle\Integration\TrelloIntegration;
+use MauticPlugin\MauticTrelloBundle\Integration\Config;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
@@ -22,55 +18,33 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  */
 class ButtonSubscriber implements EventSubscriberInterface
 {
-    protected $requestStack;
-
-    /**
-     * @var RouterInterface
-     */
-    private $router;
-
-    /**
-     * @var TranslatorInterface
-     */
-    private $translator;
-
-    /**
-     * @var TrelloIntegration
-     */
-    private $integration;
-
-    /**
-     * Set up Button Subscriper class.
-     */
-    public function __construct(RouterInterface $router, TranslatorInterface $translator, RequestStack $requestStack, IntegrationHelper $integrationHelper)
-    {
-        $this->router       = $router;
-        $this->translator   = $translator;
-        $this->requestStack = $requestStack;
-        $this->integration  = $integrationHelper->getIntegrationObject('Trello');
+    public function __construct(
+        private RouterInterface $router,
+        private TranslatorInterface $translator,
+        private Config $config
+    ) {
     }
 
-    /**
-     * Get Events.
-     */
-    public static function getSubscribedEvents()
+    public static function getSubscribedEvents(): array
     {
         return [
             CoreEvents::VIEW_INJECT_CUSTOM_BUTTONS => ['injectViewButtons', 0],
         ];
     }
 
-    public function injectViewButtons(CustomButtonEvent $event)
+    public function injectViewButtons(CustomButtonEvent $event): void
     {
-        if (empty($this->integration) || !$this->integration->isPublished()) {
-            return false;
+        if (!str_starts_with($event->getRoute(), 'mautic_contact_')) {
+            return;
         }
 
-        $request     = $this->requestStack->getCurrentRequest();
-        $returnRoute = $request->attributes->get('_route');
+        if (!$this->config->isPublished() && !$this->config->isConfigured()) {
+            return;
+        }
+
+        $returnRoute = $event->getRoute();
 
         $lead = $event->getItem();
-
         if ($lead instanceof Lead) {
             $addToTrelloBtn = [
                 'attr' => [

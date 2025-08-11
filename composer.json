@@ -7,16 +7,30 @@
       "email": "adrian@idea2.ch"
     }
   ],
-  "autoload": {
-    "psr-4": {
-      "MauticPlugin\\": "plugins/"
-    }
+  "keywords": ["mautic", "plugin", "integration", "aivie"],
+  "extra": {
+    "install-directory-name": "MauticTrelloBundle"
   },
-  "require-dev": {
-    "friendsofphp/php-cs-fixer": "^2.15",
-    "phpstan/phpstan": "^0.12.3",
-    "symfony/var-dumper": "~3.4.0",
-    "php-cs-fixer/phpunit-constraint-isidenticalstring": "^1.1",
-    "escapestudios/symfony2-coding-standard": "3.x-dev"
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "require": {
+    "mautic/core-lib": "^6.0"
+  },
+  "scripts": {
+    "test": [
+      "@phpunit",
+      "@csfixer"
+    ],
+    "quicktest": [
+      "@unit",
+      "@csfixer"
+    ],
+    "phpunit": "../../bin/phpunit -d memory_limit=1G  --bootstrap ../../vendor/autoload.php --configuration phpunit.xml --fail-on-warning --testsuite=all",
+    "unit": "../../bin/phpunit -d memory_limit=1G  --bootstrap ../../vendor/autoload.php --configuration phpunit.xml --fail-on-warning --testsuite=unit",
+    "functional": "../../bin/phpunit -d memory_limit=1G  --bootstrap ../../vendor/autoload.php --configuration phpunit.xml --fail-on-warning --testsuite=functional",
+    "coverage": "../../bin/phpunit -d memory_limit=1G  --bootstrap ../../vendor/autoload.php --configuration phpunit.xml --fail-on-warning --testsuite=all --coverage-text --coverage-html=Tests/Coverage",
+    "csfixer": "../../bin/php-cs-fixer fix . -v --dry-run --diff --using-cache=no --config=../../.php-cs-fixer.php",
+    "fixcs": "../../bin/php-cs-fixer fix . -v --using-cache=no --config=../../.php-cs-fixer.php",
+    "phpstan": "[ ! -f ../../var/cache/test/AppKernelTestDebugContainer.xml ] && (echo 'Building test cache ...'; APP_ENV=test APP_DEBUG=1 ../../bin/console > /dev/null 2>&1); php -d memory_limit=4G ../../bin/phpstan analyse ."
   }
 }

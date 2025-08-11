@@ -1,0 +1,22 @@
+{{ form_start(form) }}
+<div class="row">
+    <div class="col-xs-12">
+        {{ form_row(form.name) }}
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        {{ form_row(form.desc) }}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-6">
+        {{ form_row(form.idList) }}
+    </div>
+    <div class="col-xs-6">
+        {{ form_row(form.due) }}
+    </div>
+</div>
+{{ form_row(form.buttons) }}
+{{ form_end(form) }}
