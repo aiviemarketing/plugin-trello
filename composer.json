@@ -1,10 +1,11 @@
 {
-  "name": "idea2/idea2-trello-bundle",
-  "description": "Add Trello cards from Mautic",
+  "name": "aivie/aivie-trello-bundle",
+  "description": "Add Trello cards from Mautic.",
+  "type": "mautic-plugin",
   "authors": [
     {
       "name": "Adrian Schimpf",
-      "email": "adrian@idea2.ch"
+      "email": "dev@aivie.ch"
     }
   ],
   "keywords": ["mautic", "plugin", "integration", "aivie"],
