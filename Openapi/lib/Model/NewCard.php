@@ -1,17 +1,8 @@
 <?php
-/**
- * NewCard
- *
- * PHP version 7.4
- *
- * @category Class
- * @package  MauticPlugin\MauticTrelloBundle\Openapi\lib
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
- */
+
 
 /**
- * Mautic Trello API
+ * Mautic Trello API.
  *
  * Create or update a card via the Trello API
  *
@@ -28,88 +19,91 @@
 
 namespace MauticPlugin\MauticTrelloBundle\Openapi\lib\Model;
 
-use \ArrayAccess;
-use \MauticPlugin\MauticTrelloBundle\Openapi\lib\ObjectSerializer;
+use MauticPlugin\MauticTrelloBundle\Openapi\lib\ObjectSerializer;
 
 /**
- * NewCard Class Doc Comment
+ * NewCard Class Doc Comment.
  *
  * @category Class
- * @package  MauticPlugin\MauticTrelloBundle\Openapi\lib
+ *
  * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
+ *
+ * @see     https://openapi-generator.tech
+ *
  * @implements \ArrayAccess<string, mixed>
  */
-class NewCard implements ModelInterface, ArrayAccess, \JsonSerializable
+class NewCard implements ModelInterface, \ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
     /**
-      * The original name of the model.
-      *
-      * @var string
-      */
+     * The original name of the model.
+     *
+     * @var string
+     */
     protected static $openAPIModelName = 'NewCard';
 
     /**
-      * Array of property to type mappings. Used for (de)serialization
-      *
-      * @var string[]
-      */
+     * Array of property to type mappings. Used for (de)serialization.
+     *
+     * @var string[]
+     */
     protected static $openAPITypes = [
-        'name' => 'string',
-        'idList' => 'string',
-        'desc' => 'string',
-        'pos' => 'string',
-        'due' => '\DateTime',
-        'urlSource' => 'string',
-        'contactId' => 'int',
-        'keepFromSource' => 'string'
+        'name'           => 'string',
+        'idList'         => 'string',
+        'desc'           => 'string',
+        'pos'            => 'string',
+        'due'            => '\DateTime',
+        'urlSource'      => 'string',
+        'contactId'      => 'int',
+        'keepFromSource' => 'string',
     ];
 
     /**
-      * Array of property to format mappings. Used for (de)serialization
-      *
-      * @var string[]
-      * @phpstan-var array<string, string|null>
-      * @psalm-var array<string, string|null>
-      */
+     * Array of property to format mappings. Used for (de)serialization.
+     *
+     * @var string[]
+     *
+     * @phpstan-var array<string, string|null>
+     *
+     * @psalm-var array<string, string|null>
+     */
     protected static $openAPIFormats = [
-        'name' => null,
-        'idList' => null,
-        'desc' => null,
-        'pos' => null,
-        'due' => 'date-time',
-        'urlSource' => 'uri',
-        'contactId' => null,
-        'keepFromSource' => null
+        'name'           => null,
+        'idList'         => null,
+        'desc'           => null,
+        'pos'            => null,
+        'due'            => 'date-time',
+        'urlSource'      => 'uri',
+        'contactId'      => null,
+        'keepFromSource' => null,
     ];
 
     /**
-      * Array of nullable properties. Used for (de)serialization
-      *
-      * @var boolean[]
-      */
+     * Array of nullable properties. Used for (de)serialization.
+     *
+     * @var bool[]
+     */
     protected static array $openAPINullables = [
-        'name' => false,
-		'idList' => false,
-		'desc' => false,
-		'pos' => false,
-		'due' => false,
-		'urlSource' => false,
-		'contactId' => false,
-		'keepFromSource' => false
+        'name'           => false,
+        'idList'         => false,
+        'desc'           => false,
+        'pos'            => false,
+        'due'            => false,
+        'urlSource'      => false,
+        'contactId'      => false,
+        'keepFromSource' => false,
     ];
 
     /**
-      * If a nullable field gets set to null, insert it here
-      *
-      * @var boolean[]
-      */
+     * If a nullable field gets set to null, insert it here.
+     *
+     * @var bool[]
+     */
     protected array $openAPINullablesSetToNull = [];
 
     /**
-     * Array of property to type mappings. Used for (de)serialization
+     * Array of property to type mappings. Used for (de)serialization.
      *
      * @return array
      */
@@ -119,7 +113,7 @@ class NewCard implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Array of property to format mappings. Used for (de)serialization
+     * Array of property to format mappings. Used for (de)serialization.
      *
      * @return array
      */
@@ -129,9 +123,7 @@ class NewCard implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Array of nullable properties
-     *
-     * @return array
+     * Array of nullable properties.
      */
     protected static function openAPINullables(): array
     {
@@ -139,9 +131,9 @@ class NewCard implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Array of nullable field names deliberately set to null
+     * Array of nullable field names deliberately set to null.
      *
-     * @return boolean[]
+     * @return bool[]
      */
     private function getOpenAPINullablesSetToNull(): array
     {
@@ -149,9 +141,9 @@ class NewCard implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Setter - Array of nullable field names deliberately set to null
+     * Setter - Array of nullable field names deliberately set to null.
      *
-     * @param boolean[] $openAPINullablesSetToNull
+     * @param bool[] $openAPINullablesSetToNull
      */
     private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
     {
@@ -159,10 +151,7 @@ class NewCard implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Checks if a property is nullable
-     *
-     * @param string $property
-     * @return bool
+     * Checks if a property is nullable.
      */
     public static function isNullable(string $property): bool
     {
@@ -171,9 +160,6 @@ class NewCard implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Checks if a nullable property is set to null.
-     *
-     * @param string $property
-     * @return bool
      */
     public function isNullableSetToNull(string $property): bool
     {
@@ -182,56 +168,56 @@ class NewCard implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Array of attributes where the key is the local name,
-     * and the value is the original name
+     * and the value is the original name.
      *
      * @var string[]
      */
     protected static $attributeMap = [
-        'name' => 'name',
-        'idList' => 'idList',
-        'desc' => 'desc',
-        'pos' => 'pos',
-        'due' => 'due',
-        'urlSource' => 'urlSource',
-        'contactId' => 'contactId',
-        'keepFromSource' => 'keepFromSource'
+        'name'           => 'name',
+        'idList'         => 'idList',
+        'desc'           => 'desc',
+        'pos'            => 'pos',
+        'due'            => 'due',
+        'urlSource'      => 'urlSource',
+        'contactId'      => 'contactId',
+        'keepFromSource' => 'keepFromSource',
     ];
 
     /**
-     * Array of attributes to setter functions (for deserialization of responses)
+     * Array of attributes to setter functions (for deserialization of responses).
      *
      * @var string[]
      */
     protected static $setters = [
-        'name' => 'setName',
-        'idList' => 'setIdList',
-        'desc' => 'setDesc',
-        'pos' => 'setPos',
-        'due' => 'setDue',
-        'urlSource' => 'setUrlSource',
-        'contactId' => 'setContactId',
-        'keepFromSource' => 'setKeepFromSource'
+        'name'           => 'setName',
+        'idList'         => 'setIdList',
+        'desc'           => 'setDesc',
+        'pos'            => 'setPos',
+        'due'            => 'setDue',
+        'urlSource'      => 'setUrlSource',
+        'contactId'      => 'setContactId',
+        'keepFromSource' => 'setKeepFromSource',
     ];
 
     /**
-     * Array of attributes to getter functions (for serialization of requests)
+     * Array of attributes to getter functions (for serialization of requests).
      *
      * @var string[]
      */
     protected static $getters = [
-        'name' => 'getName',
-        'idList' => 'getIdList',
-        'desc' => 'getDesc',
-        'pos' => 'getPos',
-        'due' => 'getDue',
-        'urlSource' => 'getUrlSource',
-        'contactId' => 'getContactId',
-        'keepFromSource' => 'getKeepFromSource'
+        'name'           => 'getName',
+        'idList'         => 'getIdList',
+        'desc'           => 'getDesc',
+        'pos'            => 'getPos',
+        'due'            => 'getDue',
+        'urlSource'      => 'getUrlSource',
+        'contactId'      => 'getContactId',
+        'keepFromSource' => 'getKeepFromSource',
     ];
 
     /**
      * Array of attributes where the key is the local name,
-     * and the value is the original name
+     * and the value is the original name.
      *
      * @return array
      */
@@ -241,7 +227,7 @@ class NewCard implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Array of attributes to setter functions (for deserialization of responses)
+     * Array of attributes to setter functions (for deserialization of responses).
      *
      * @return array
      */
@@ -251,7 +237,7 @@ class NewCard implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Array of attributes to getter functions (for serialization of requests)
+     * Array of attributes to getter functions (for serialization of requests).
      *
      * @return array
      */
@@ -270,16 +256,15 @@ class NewCard implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-
     /**
-     * Associative array for storing property values
+     * Associative array for storing property values.
      *
      * @var mixed[]
      */
     protected $container = [];
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
@@ -297,14 +282,12 @@ class NewCard implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
-    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
-    * $this->openAPINullablesSetToNull array
-    *
-    * @param string $variableName
-    * @param array  $fields
-    * @param mixed  $defaultValue
-    */
+     * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
+     * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
+     * $this->openAPINullablesSetToNull array.
+     *
+     * @param mixed $defaultValue
+     */
     private function setIfExists(string $variableName, array $fields, $defaultValue): void
     {
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
@@ -323,17 +306,17 @@ class NewCard implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['name'] === null) {
+        if (null === $this->container['name']) {
             $invalidProperties[] = "'name' can't be null";
         }
-        if ((mb_strlen($this->container['name']) < 1)) {
+        if (mb_strlen($this->container['name']) < 1) {
             $invalidProperties[] = "invalid value for 'name', the character length must be bigger than or equal to 1.";
         }
 
-        if ($this->container['idList'] === null) {
+        if (null === $this->container['idList']) {
             $invalidProperties[] = "'idList' can't be null";
         }
-        if ((mb_strlen($this->container['idList']) < 1)) {
+        if (mb_strlen($this->container['idList']) < 1) {
             $invalidProperties[] = "invalid value for 'idList', the character length must be bigger than or equal to 1.";
         }
 
@@ -346,18 +329,17 @@ class NewCard implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Validate all the properties in the model
-     * return true if all passed
+     * return true if all passed.
      *
      * @return bool True if all properties are valid
      */
     public function valid()
     {
-        return count($this->listInvalidProperties()) === 0;
+        return 0 === count($this->listInvalidProperties());
     }
 
-
     /**
-     * Gets name
+     * Gets name.
      *
      * @return string
      */
@@ -367,7 +349,7 @@ class NewCard implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Sets name
+     * Sets name.
      *
      * @param string $name Card Name
      *
@@ -379,7 +361,7 @@ class NewCard implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable name cannot be null');
         }
 
-        if ((mb_strlen($name) < 1)) {
+        if (mb_strlen($name) < 1) {
             throw new \InvalidArgumentException('invalid length for $name when calling NewCard., must be bigger than or equal to 1.');
         }
 
@@ -389,7 +371,7 @@ class NewCard implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets idList
+     * Gets idList.
      *
      * @return string
      */
@@ -399,7 +381,7 @@ class NewCard implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Sets idList
+     * Sets idList.
      *
      * @param string $idList The ID of the list the card should be created in
      *
@@ -411,7 +393,7 @@ class NewCard implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable idList cannot be null');
         }
 
-        if ((mb_strlen($idList) < 1)) {
+        if (mb_strlen($idList) < 1) {
             throw new \InvalidArgumentException('invalid length for $idList when calling NewCard., must be bigger than or equal to 1.');
         }
 
@@ -421,7 +403,7 @@ class NewCard implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets desc
+     * Gets desc.
      *
      * @return string|null
      */
@@ -431,7 +413,7 @@ class NewCard implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Sets desc
+     * Sets desc.
      *
      * @param string|null $desc Card Description
      *
@@ -448,7 +430,7 @@ class NewCard implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets pos
+     * Gets pos.
      *
      * @return string|null
      */
@@ -458,7 +440,7 @@ class NewCard implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Sets pos
+     * Sets pos.
      *
      * @param string|null $pos pos
      *
@@ -475,7 +457,7 @@ class NewCard implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets due
+     * Gets due.
      *
      * @return \DateTime|null
      */
@@ -485,7 +467,7 @@ class NewCard implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Sets due
+     * Sets due.
      *
      * @param \DateTime|null $due full-date notation as defined by RFC 3339, section 5.6. Default Timezone is UTC
      *
@@ -502,7 +484,7 @@ class NewCard implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets urlSource
+     * Gets urlSource.
      *
      * @return string|null
      */
@@ -512,7 +494,7 @@ class NewCard implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Sets urlSource
+     * Sets urlSource.
      *
      * @param string|null $urlSource urlSource
      *
@@ -529,7 +511,7 @@ class NewCard implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets contactId
+     * Gets contactId.
      *
      * @return int|null
      */
@@ -539,9 +521,9 @@ class NewCard implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Sets contactId
+     * Sets contactId.
      *
-     * @param int|null $contactId The ID of the Mautic contact (Lead).
+     * @param int|null $contactId the ID of the Mautic contact (Lead)
      *
      * @return self
      */
@@ -551,7 +533,7 @@ class NewCard implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable contactId cannot be null');
         }
 
-        if (($contactId < 0)) {
+        if ($contactId < 0) {
             throw new \InvalidArgumentException('invalid value for $contactId when calling NewCard., must be bigger than or equal to 0.');
         }
 
@@ -561,7 +543,7 @@ class NewCard implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets keepFromSource
+     * Gets keepFromSource.
      *
      * @return string|null
      */
@@ -571,9 +553,9 @@ class NewCard implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Sets keepFromSource
+     * Sets keepFromSource.
      *
-     * @param string|null $keepFromSource If using idCardSource you can specify which properties to copy over.
+     * @param string|null $keepFromSource if using idCardSource you can specify which properties to copy over
      *
      * @return self
      */
@@ -586,12 +568,11 @@ class NewCard implements ModelInterface, ArrayAccess, \JsonSerializable
 
         return $this;
     }
+
     /**
      * Returns true if offset exists. False otherwise.
      *
-     * @param integer $offset Offset
-     *
-     * @return boolean
+     * @param int $offset Offset
      */
     public function offsetExists($offset): bool
     {
@@ -601,7 +582,7 @@ class NewCard implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets offset.
      *
-     * @param integer $offset Offset
+     * @param int $offset Offset
      *
      * @return mixed|null
      */
@@ -616,8 +597,6 @@ class NewCard implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int|null $offset Offset
      * @param mixed    $value  Value to be set
-     *
-     * @return void
      */
     public function offsetSet($offset, $value): void
     {
@@ -631,9 +610,7 @@ class NewCard implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Unsets offset.
      *
-     * @param integer $offset Offset
-     *
-     * @return void
+     * @param int $offset Offset
      */
     public function offsetUnset($offset): void
     {
@@ -642,19 +619,20 @@ class NewCard implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
      *
-     * @return mixed Returns data which can be serialized by json_encode(), which is a value
-     * of any type other than a resource.
+     * @see https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     *
+     * @return mixed returns data which can be serialized by json_encode(), which is a value
+     *               of any type other than a resource
      */
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
-     * Gets the string presentation of the object
+     * Gets the string presentation of the object.
      *
      * @return string
      */
@@ -667,7 +645,7 @@ class NewCard implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets a header-safe presentation of the object
+     * Gets a header-safe presentation of the object.
      *
      * @return string
      */
@@ -676,5 +654,3 @@ class NewCard implements ModelInterface, ArrayAccess, \JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

@@ -45,7 +45,7 @@ class TrelloApiServiceMockTest extends TestCase
                 [
                     $this->createMock(CoreParametersHelper::class),
                     $this->createMock(Logger::class),
-                    $this->createMock(Config::class)
+                    $this->createMock(Config::class),
                 ]
             )
             ->getMock();

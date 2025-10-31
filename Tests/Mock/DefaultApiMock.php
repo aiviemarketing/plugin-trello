@@ -17,9 +17,9 @@ class DefaultApiMock extends DefaultApi
 {
     /**
      * Get an array of TrelloBoards.
+     *
      * @param null $fields
      * @param null $filter
-     * @param string $contentType
      */
     public function getBoards($fields = null, $filter = null, string $contentType = self::contentTypes['getBoards'][0]): array
     {
@@ -35,11 +35,10 @@ class DefaultApiMock extends DefaultApi
 
     /**
      * Get a static array of TrelloLists.
-     * @param $boardId
+     *
      * @param null $cards
      * @param null $filter
      * @param null $fields
-     * @param string $contentType
      */
     public function getLists($boardId, $cards = null, $filter = null, $fields = null, string $contentType = self::contentTypes['getLists'][0]): array
     {
@@ -56,7 +55,6 @@ class DefaultApiMock extends DefaultApi
      * Simulate the response for adding a new card to Trello.
      *
      * @param NewCard $newCard
-     * @param string $contentType
      */
     public function addCard($newCard, string $contentType = self::contentTypes['addCard'][0]): Card
     {

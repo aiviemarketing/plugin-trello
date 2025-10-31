@@ -6,7 +6,6 @@ namespace MauticPlugin\MauticTrelloBundle\Controller;
 
 use Doctrine\Persistence\ManagerRegistry;
 use Mautic\CoreBundle\Controller\AbstractFormController;
-use Mautic\CoreBundle\Factory\MauticFactory;
 use Mautic\CoreBundle\Factory\ModelFactory;
 use Mautic\CoreBundle\Helper\CoreParametersHelper;
 use Mautic\CoreBundle\Helper\UserHelper;
@@ -49,7 +48,7 @@ class CardController extends AbstractFormController
         Translator $translator,
         FlashBag $flashBag,
         RequestStack $requestStack,
-        CorePermissions $security
+        CorePermissions $security,
     ) {
         parent::__construct($doctrine, $modelFactory, $userHelper, $coreParametersHelper, $dispatcher, $translator, $flashBag, $requestStack, $security);
     }
