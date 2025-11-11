@@ -113,6 +113,8 @@ class TrelloApiService
 
     /**
      * Get the user specific auth params of the Trello API to add to the post part.
+     *
+     * @return array<string, string> The auth params as an array.
      */
     public function getAuthParams(): array
     {
@@ -123,9 +125,7 @@ class TrelloApiService
         $keys = $this->config->getApiKeys();
 
         if (empty($keys['appkey']) || empty($keys['apitoken'])) {
-            $this->logger->info('No valid Trello api keys');
-
-            return [];
+            $this->logger->warning('No valid Trello api keys');
         }
 
         return [
