@@ -6,9 +6,9 @@ Interact with Trello directly from Mauitc. E.g. create Trello cards for contacts
 
 ## Requirements
 
-- [Mautic](https://www.mautic.org) > v3.0.2
+- [Mautic](https://www.mautic.org) > v4.0.0
 - [Trello](https://www.trello.com)
-- This plugin is already installed with your [Aivie Mautic Hosting](https://aivie.ch/?utm_source=github&utm_medium=mautic-trello&utm_campaign=opensource&utm_content=hosting)
+- This plugin is already installed with your [Aivie Mautic Hosting](https://aivie.ch/en/mautic-hosting-and-installation/?utm_source=github&utm_medium=mautic-trello&utm_campaign=opensource&utm_content=hosting)
 
 ## Enduser Documentation
 
@@ -54,3 +54,8 @@ Can be combined with [prism](https://github.com/stoplightio/prism) to automatica
 ```
 prism mock -d docs/api/i2-trello.oas3.yml
 ```
+
+### Contributers
+<a href="https://aivie.ch/en/?utm_source=github&utm_medium=mautic-trello&utm_campaign=opensource&utm_content=contact>">Aivie</a><br>
+<a href="https://aivie.ch/en/?utm_source=github&utm_medium=mautic-trello&utm_campaign=opensource&utm_content=contact>">
+  <img width="200px" src="https://cdn.aivie.ch/media/wp/2021/06/19131704/logo-aivie-fast-kein-rand-400w.png"></img></a>
