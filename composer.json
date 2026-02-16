@@ -1,5 +1,5 @@
 {
-  "name": "aivie/aivie-trello-bundle",
+  "name": "aiviemarketing/mautic-trello",
   "description": "Add Trello cards from Mautic.",
   "type": "mautic-plugin",
   "license": "GPL-3.0-or-later",
