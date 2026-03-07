@@ -107,8 +107,16 @@ class CardController extends AbstractFormController
         // process form data from HTTP variables
         $form->handleRequest($request);
 
-        // MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\NewCard;
+        /** @var NewCard $newCard */
         $newCard = $form->getData();
+
+        // get the Trello Board Member for the current logged in user
+        $member =$this->apiService->getBoardMemberForUser(
+            $this->apiService->getFavouriteBoard(),
+            $this->getUser()
+        );
+
+        $newCard->setIdMembers($member ? [$member->getId()] : []);
 
         if (!$newCard->valid()) {
             $invalid = current($newCard->listInvalidProperties());
@@ -150,6 +158,9 @@ class CardController extends AbstractFormController
         if (empty($returnRoute) || empty($contactId)) {
             $this->logger->warning('Trello: No return url or contact for add to Trello specified', ['contactId' => $contactId, 'returnRoute' => $returnRoute]);
         }
+        if (empty($returnRoute)) {
+            $returnRoute = 'mautic_contact_action';
+        }
 
         // return user to contact overview
         if ('mautic_contact_index' === $returnRoute) {
@@ -171,7 +182,7 @@ class CardController extends AbstractFormController
             [
                 'returnUrl'       => $this->generateUrl($returnRoute, $viewParameters),
                 'viewParameters'  => $viewParameters,
-                'contentTemplate' => 'Mautic\LeadBundle\Controller\LeadController::'.$func.'Action',
+                'contentTemplate' => 'Mautic\LeadBundle\Controller\LeadController::' . $func . 'Action',
                 'passthroughVars' => [
                     'mauticContent' => 'lead',
                     'closeModal'    => 1,
@@ -213,6 +224,7 @@ class CardController extends AbstractFormController
                 return null;
             }
             $card = $this->contactToCard($contact);
+            // $card->setDue(new \DateTime('+1 week'));
         }
 
         $action = $this->generateUrl('plugin_trello_card_add', ['returnRoute' => $returnRoute]);
@@ -242,15 +254,15 @@ class CardController extends AbstractFormController
     {
         // $desc = array('Contact:', $contact->getEmail(), $contact->getPhone(), $contact->getMobile());
         $siteUrl = rtrim($this->coreParametersHelper->get('site_url'), '/');
-
+        
         return new NewCard(
             [
                 'name'      => $contact->getName(),
                 'desc'      => null,
                 'idList'    => $this->getListForContact($contact),
-                'urlSource' => $siteUrl.'/s/contacts/view/'.$contact->getId(),
+                'urlSource' => $siteUrl . '/s/contacts/view/' . $contact->getId(),
                 'contactId' => $contact->getId(),
-                // 'due' => new \DateTime('next week'),
+                'due' => new \DateTime('+1 week'),
             ]
         );
     }
@@ -264,6 +276,12 @@ class CardController extends AbstractFormController
     {
         $stage = $contact->getStage();
         $lists = $this->apiService->getListsOnBoard();
+
+        if (empty($lists)) {
+            $this->logger->warning('Trello: No lists found on board');
+            throw new \Exception('No lists found on board');
+        }
+
         if (!empty($stage) && is_array($lists)) {
             foreach ($lists as $list) {
                 if ($list->getName() === $stage->getName()) {
@@ -273,8 +291,12 @@ class CardController extends AbstractFormController
                 }
             }
         }
-        $this->logger->debug('Trello: stage is not a list', [$stage]);
+        $this->logger->debug('Trello: Stage is not a Trello list. Adding it to the first list.', [
+            'stage' => $stage->getName(),
+            'list'  => $lists[0]->getId(),
+        ]);
 
-        return '';
+        // return the first list name
+        return $lists[0]->getId();
     }
 }
