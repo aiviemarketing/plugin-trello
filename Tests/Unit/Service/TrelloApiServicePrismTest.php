@@ -8,7 +8,8 @@ use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Test the Mautic Trello API Services.
+ * Test the Mautic Trello API Services against a Prism mock server.
+ * Enable and run when Prism is available (e.g. stoplight/prism).
  */
 class TrelloApiServicePrismTest extends TestCase
 {
@@ -128,4 +129,13 @@ class TrelloApiServicePrismTest extends TestCase
     //         $this->assertTrue($card->valid());
     //     }
     // }
+
+    /**
+     * Placeholder so PHPUnit does not report "No tests found".
+     * Real tests (getListsOnBoard, getBoardsArray, addNewCard) are commented out until Prism mock server is configured.
+     */
+    public function testPlaceholderUntilPrismConfigured(): void
+    {
+        $this->assertTrue(true, 'Prism tests are commented out; uncomment when mock server is available.');
+    }
 }

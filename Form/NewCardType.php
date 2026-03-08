@@ -97,7 +97,8 @@ class NewCardType extends AbstractType
                 ]
             )
             ->add('urlSource', HiddenType::class)
-            ->add('contactId', HiddenType::class);
+            ->add('contactId', HiddenType::class)
+            ->add('returnRoute', HiddenType::class, ['mapped' => false]);
 
         $builder->add('buttons', FormButtonsType::class, [
             'apply_text' => false,

@@ -22,6 +22,14 @@ return [
                 'returnRoute' => '',
             ],
         ],
+        'api' => [
+            'plugin_trello_card_add_checklist_item_to_card' => [
+                'path'        => '/trello/card/checklist/item',
+                'method'      => 'POST',
+                'controller'  => 'MauticPlugin\MauticTrelloBundle\Controller\Api\CardApiController::addChecklistItemToCardAction',
+                'returnRoute' => '',
+            ],
+        ],
     ],
     'parameters' => [
         'favorite_board' => '',

@@ -12,7 +12,9 @@ return static function (ContainerConfigurator $configurator) {
         ->autoconfigure()
         ->public();
 
-    $excludes = [];
+    $excludes = [
+        'Controller/Api/Request',  // Request DTOs are created via fromArray(), not services
+    ];
     $services->load('MauticPlugin\\MauticTrelloBundle\\', '../')
         ->exclude('../{'.implode(',', array_merge(MauticCoreExtension::DEFAULT_EXCLUDES, $excludes)).'}');
 };

@@ -84,18 +84,30 @@ All URIs are relative to *https://api.trello.com/1*
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *DefaultApi* | [**addCard**](docs/Api/DefaultApi.md#addcard) | **POST** /card | 
+*DefaultApi* | [**addChecklistItemOnCard**](docs/Api/DefaultApi.md#addchecklistitemoncard) | **POST** /checklists/{id}/checkItems | Create Checkitem on Checklist
+*DefaultApi* | [**addChecklistOnCard**](docs/Api/DefaultApi.md#addchecklistoncard) | **POST** /cards/{id}/checklists | Create Checklist on a Card
+*DefaultApi* | [**getAttachmentsOnCard**](docs/Api/DefaultApi.md#getattachmentsoncard) | **GET** /card/{id}/attachments | Get Attachments on a Card
+*DefaultApi* | [**getBoardMembers**](docs/Api/DefaultApi.md#getboardmembers) | **GET** /boards/{id}/members | Get the Members of a Board
 *DefaultApi* | [**getBoards**](docs/Api/DefaultApi.md#getboards) | **GET** /members/me/boards | 
+*DefaultApi* | [**getCard**](docs/Api/DefaultApi.md#getcard) | **GET** /cards/{id} | Get a Card
+*DefaultApi* | [**getCardsOnBoard**](docs/Api/DefaultApi.md#getcardsonboard) | **GET** /boards/{id}/cards | Get Cards on a Board
 *DefaultApi* | [**getLists**](docs/Api/DefaultApi.md#getlists) | **GET** /boards/{boardId}/lists | 
+*DefaultApi* | [**getMember**](docs/Api/DefaultApi.md#getmember) | **GET** /members/{id} | Get a Member
+*DefaultApi* | [**updateCard**](docs/Api/DefaultApi.md#updatecard) | **PUT** /cards/{id} | Update a Card
 
 ## Models
 
+- [Attachment](docs/Model/Attachment.md)
 - [Card](docs/Model/Card.md)
 - [CardAllOf](docs/Model/CardAllOf.md)
 - [CardError](docs/Model/CardError.md)
 - [CardErrorData](docs/Model/CardErrorData.md)
+- [Member](docs/Model/Member.md)
 - [NewCard](docs/Model/NewCard.md)
 - [TrelloBoard](docs/Model/TrelloBoard.md)
 - [TrelloList](docs/Model/TrelloList.md)
+- [UpdateCardPosParameter](docs/Model/UpdateCardPosParameter.md)
+- [UpdateCardPosParameterOneOf](docs/Model/UpdateCardPosParameterOneOf.md)
 
 ## Authorization
 

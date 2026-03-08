@@ -22,7 +22,7 @@ namespace MauticPlugin\MauticTrelloBundle\Openapi\lib\Model;
 use MauticPlugin\MauticTrelloBundle\Openapi\lib\ObjectSerializer;
 
 /**
- * CardError Class Doc Comment.
+ * UpdateCardPosParameter Class Doc Comment.
  *
  * @category Class
  *
@@ -32,7 +32,7 @@ use MauticPlugin\MauticTrelloBundle\Openapi\lib\ObjectSerializer;
  *
  * @implements \ArrayAccess<string, mixed>
  */
-class CardError implements ModelInterface, \ArrayAccess, \JsonSerializable
+class UpdateCardPosParameter implements ModelInterface, \ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -41,7 +41,7 @@ class CardError implements ModelInterface, \ArrayAccess, \JsonSerializable
      *
      * @var string
      */
-    protected static $openAPIModelName = 'CardError';
+    protected static $openAPIModelName = 'updateCard_pos_parameter';
 
     /**
      * Array of property to type mappings. Used for (de)serialization.
@@ -49,9 +49,6 @@ class CardError implements ModelInterface, \ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $openAPITypes = [
-        'code'    => 'string',
-        'message' => 'string',
-        'data'    => '\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\CardErrorData',
     ];
 
     /**
@@ -64,9 +61,6 @@ class CardError implements ModelInterface, \ArrayAccess, \JsonSerializable
      * @psalm-var array<string, string|null>
      */
     protected static $openAPIFormats = [
-        'code'    => null,
-        'message' => null,
-        'data'    => null,
     ];
 
     /**
@@ -75,9 +69,6 @@ class CardError implements ModelInterface, \ArrayAccess, \JsonSerializable
      * @var bool[]
      */
     protected static array $openAPINullables = [
-        'code'    => false,
-        'message' => false,
-        'data'    => false,
     ];
 
     /**
@@ -158,9 +149,6 @@ class CardError implements ModelInterface, \ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'code'    => 'code',
-        'message' => 'message',
-        'data'    => 'data',
     ];
 
     /**
@@ -169,9 +157,6 @@ class CardError implements ModelInterface, \ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'code'    => 'setCode',
-        'message' => 'setMessage',
-        'data'    => 'setData',
     ];
 
     /**
@@ -180,9 +165,6 @@ class CardError implements ModelInterface, \ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'code'    => 'getCode',
-        'message' => 'getMessage',
-        'data'    => 'getData',
     ];
 
     /**
@@ -241,9 +223,6 @@ class CardError implements ModelInterface, \ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('code', $data ?? [], null);
-        $this->setIfExists('message', $data ?? [], null);
-        $this->setIfExists('data', $data ?? [], null);
     }
 
     /**
@@ -271,13 +250,6 @@ class CardError implements ModelInterface, \ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if (null === $this->container['code']) {
-            $invalidProperties[] = "'code' can't be null";
-        }
-        if (null === $this->container['message']) {
-            $invalidProperties[] = "'message' can't be null";
-        }
-
         return $invalidProperties;
     }
 
@@ -290,87 +262,6 @@ class CardError implements ModelInterface, \ArrayAccess, \JsonSerializable
     public function valid()
     {
         return 0 === count($this->listInvalidProperties());
-    }
-
-    /**
-     * Gets code.
-     *
-     * @return string
-     */
-    public function getCode()
-    {
-        return $this->container['code'];
-    }
-
-    /**
-     * Sets code.
-     *
-     * @param string $code short error code
-     *
-     * @return self
-     */
-    public function setCode($code)
-    {
-        if (is_null($code)) {
-            throw new \InvalidArgumentException('non-nullable code cannot be null');
-        }
-        $this->container['code'] = $code;
-
-        return $this;
-    }
-
-    /**
-     * Gets message.
-     *
-     * @return string
-     */
-    public function getMessage()
-    {
-        return $this->container['message'];
-    }
-
-    /**
-     * Sets message.
-     *
-     * @param string $message plain text error message for displaying to user
-     *
-     * @return self
-     */
-    public function setMessage($message)
-    {
-        if (is_null($message)) {
-            throw new \InvalidArgumentException('non-nullable message cannot be null');
-        }
-        $this->container['message'] = $message;
-
-        return $this;
-    }
-
-    /**
-     * Gets data.
-     *
-     * @return CardErrorData|null
-     */
-    public function getData()
-    {
-        return $this->container['data'];
-    }
-
-    /**
-     * Sets data.
-     *
-     * @param CardErrorData|null $data data
-     *
-     * @return self
-     */
-    public function setData($data)
-    {
-        if (is_null($data)) {
-            throw new \InvalidArgumentException('non-nullable data cannot be null');
-        }
-        $this->container['data'] = $data;
-
-        return $this;
     }
 
     /**

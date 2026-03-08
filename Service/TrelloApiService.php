@@ -6,12 +6,14 @@ namespace MauticPlugin\MauticTrelloBundle\Service;
 
 use GuzzleHttp\Client as HttpClient;
 use Mautic\CoreBundle\Helper\CoreParametersHelper;
+use Mautic\UserBundle\Entity\User;
 use MauticPlugin\MauticTrelloBundle\Integration\Config;
 use MauticPlugin\MauticTrelloBundle\Openapi\lib\Api\DefaultApi;
 use MauticPlugin\MauticTrelloBundle\Openapi\lib\ApiException;
 use MauticPlugin\MauticTrelloBundle\Openapi\lib\Configuration;
 use MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Card;
 use MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\CardError;
+use MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Member;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -114,7 +116,7 @@ class TrelloApiService
     /**
      * Get the user specific auth params of the Trello API to add to the post part.
      *
-     * @return array<string, string> The auth params as an array.
+     * @return array<string, string> the auth params as an array
      */
     public function getAuthParams(): array
     {
@@ -162,5 +164,125 @@ class TrelloApiService
         }
 
         // return $this->redirectToRoute('task_success');
+    }
+
+    /**
+     * Find the card on the given board that has an attachment URL matching the lead (contact).
+     * Attachment URL is expected to be the full site URL plus /s/contacts/view/{leadId}.
+     */
+    public function findCardForLead(string $boardId, int $leadId): ?Card
+    {
+        $api = $this->getApi();
+        if (!$api instanceof DefaultApi) {
+            $this->logger->warning('Trello: No API found for board', ['boardId' => $boardId]);
+
+            return null;
+        }
+
+        $cards = $api->getCardsOnBoard($boardId);
+        
+        if (!is_array($cards)) {
+            $this->logger->warning('Trello: No cards found on board', ['boardId' => $boardId]);
+
+            return null;
+        }
+
+        $siteUrl     = rtrim((string) $this->coreParametersHelper->get('site_url', ''), '/');
+        $expectedUrl = $siteUrl.'/s/contacts/view/'.$leadId;
+
+        // sort the cards by dateLastActivity descending
+        usort($cards, function($a, $b) {
+            return $b->getDateLastActivity() <=> $a->getDateLastActivity();
+        });
+        foreach ($cards as $card) {
+            $attachments = $card->getAttachments();
+
+            if (!is_array($attachments)) {
+                continue;
+            }
+            foreach ($attachments as $attachment) {
+                if (isset($attachment['url']) && $attachment['url'] === $expectedUrl) {
+                    return $card;
+                }
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * Ensure the card has a checklist (create "Todo" if none), then add the check item.
+     */
+    public function addChecklistItemToCard(Card $card, string $itemName): void
+    {
+        $api = $this->getApi();
+        if (!$api instanceof DefaultApi) {
+            return;
+        }
+
+        $checklistIds = $card->getIdChecklists();
+        if (empty($checklistIds) || empty($checklistIds[0])) {
+            $api->addChecklistOnCard($card->getId(), 'Todo');
+            $card         = $api->getCard($card->getId());
+            $checklistIds = $card->getIdChecklists();
+            $this->logger->debug('Trello: Checklist added to card: Todo', ['cardId' => $card->getId(), 'checklistIds' => $checklistIds]);
+        }
+
+        $checklistId = $checklistIds[0];
+        $api->addChecklistItemOnCard($checklistId, $itemName);
+        $this->logger->debug('Trello: Checklist item added to card', ['cardId' => $card->getId(), 'checklistId' => $checklistId, 'itemName' => $itemName]);
+    }
+
+    /**
+     * Update only the due date of a card. Returns the updated card or null on failure.
+     * Set the idMembers if you also want to change the assignees of the card.
+     */
+    public function updateCardDueDate(string $cardId, ?string $dueDate, ?array $idMembers): ?Card
+    {
+        $api = $this->getApi();
+        if (!$api instanceof DefaultApi) {
+            return null;
+        }
+
+        try {
+            $card = $api->updateCard($cardId, null, null, null, null, null, null, $dueDate,null,null,null,$idMembers);
+
+            return $card instanceof Card ? $card : null;
+        } catch (\Throwable $e) {
+            $this->logger->warning('Trello: updateCard due date failed', ['cardId' => $cardId, 'message' => $e->getMessage()]);
+
+            return null;
+        }
+    }
+
+    public function getBoardMemberForUser(string $boardId, User $user): ?Member
+    {
+        $api = $this->getApi();
+        if (!$api instanceof DefaultApi) {
+            return null;
+        }
+
+        try {
+            $members = $api->getBoardMembers($boardId);
+            if (!is_array($members)) {
+                return null;
+            }
+
+            foreach ($members as $member) {
+                $member = $api->getMember($member->getId());
+                if (!$member instanceof Member) {
+                    continue;
+                }
+                if ($member->getEmail() === $user->getEmail()) {
+                    return $member;
+                }
+            }
+
+            return null;
+        } catch (\Exception $e) {
+            $this->logger->warning('Exception when calling DefaultApi->getBoardMembers(): ', [$e->getMessage()]);
+
+            return null;
+        }
     }
 }

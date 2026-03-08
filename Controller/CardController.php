@@ -182,7 +182,7 @@ class CardController extends AbstractFormController
             [
                 'returnUrl'       => $this->generateUrl($returnRoute, $viewParameters),
                 'viewParameters'  => $viewParameters,
-                'contentTemplate' => 'Mautic\LeadBundle\Controller\LeadController::' . $func . 'Action',
+                'contentTemplate' => 'Mautic\LeadBundle\Controller\LeadController::'.$func.'Action',
                 'passthroughVars' => [
                     'mauticContent' => 'lead',
                     'closeModal'    => 1,
@@ -254,15 +254,15 @@ class CardController extends AbstractFormController
     {
         // $desc = array('Contact:', $contact->getEmail(), $contact->getPhone(), $contact->getMobile());
         $siteUrl = rtrim($this->coreParametersHelper->get('site_url'), '/');
-        
+
         return new NewCard(
             [
                 'name'      => $contact->getName(),
                 'desc'      => null,
                 'idList'    => $this->getListForContact($contact),
-                'urlSource' => $siteUrl . '/s/contacts/view/' . $contact->getId(),
+                'urlSource' => $siteUrl.'/s/contacts/view/'.$contact->getId(),
                 'contactId' => $contact->getId(),
-                'due' => new \DateTime('+1 week'),
+                'due'       => new \DateTime('+1 week'),
             ]
         );
     }

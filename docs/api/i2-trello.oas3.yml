@@ -27,6 +27,339 @@ paths:
           $ref: "#/components/responses/UnauthorizedError"
         "404":
           $ref: "#/components/responses/NotFound"
+  /cards/{id}:
+    get:
+      operationId: getCard
+      summary: Get a Card
+      description: Get a card by its ID
+      parameters:
+        - in: path
+          name: id
+          description: The ID of the Card
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: fields
+          description: "`all` or a comma-separated list of card fields"
+          required: false
+          schema:
+            type: string
+            default: "id,name,idChecklists,shortUrl,due,idMembers,url"
+            example: "all"
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Card"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+        "404":
+          $ref: "#/components/responses/NotFound"
+    put:
+      operationId: updateCard
+      summary: Update a Card
+      description: Update a card. Can also only update one value - rest stays untouched.
+      parameters:
+        - in: path
+          name: id
+          description: The ID of the Card
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: name
+          description: The new name for the card
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: desc
+          description: The new description for the card
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: closed
+          description: Whether the card should be archived (closed true)
+          required: false
+          schema:
+            type: boolean
+        - in: query
+          name: idList
+          description: The ID of the list the card should be in
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: idBoard
+          description: The ID of the board the card should be on
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: pos
+          description: The position of the card in its list. top, bottom, or a positive float
+          required: false
+          schema:
+            oneOf:
+              - type: string
+                enum: [top, bottom]
+              - type: number
+                format: float
+        - in: query
+          name: due
+          description: When the card is due, or null
+          required: false
+          schema:
+            type: string
+            format: date
+            nullable: true
+        - in: query
+          name: start
+          description: The start date of a card, or null
+          required: false
+          schema:
+            type: string
+            format: date
+            nullable: true
+        - in: query
+          name: dueComplete
+          description: Whether the status of the card is complete
+          required: false
+          schema:
+            type: boolean
+        - in: query
+          name: subscribed
+          description: Whether the member should be subscribed to the card
+          required: false
+          schema:
+            type: boolean
+        - in: query
+          name: idMembers
+          description: Comma-separated list of member IDs
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: idLabels
+          description: Comma-separated list of label IDs
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: idAttachmentCover
+          description: The ID of the image attachment the card should use as its cover, or null for none
+          required: false
+          schema:
+            type: string
+            nullable: true
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Card"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+        "404":
+          $ref: "#/components/responses/NotFound"
+  /boards/{id}/cards:
+    get:
+      operationId: getCardsOnBoard
+      summary: Get Cards on a Board
+      description: Get all of the open (non-archived) cards on a board. For other filters (closed, all, visible, etc.) use GET /boards/{id}/cards/{filter}.
+      parameters:
+        - in: path
+          name: id
+          description: ID of the Board
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: fields
+          description: Comma separated list of card fields to return (e.g. id,name,idChecklists,shortUrl,due,idMembers,url or all).
+          required: false
+          schema:
+            type: string
+            default: "id,name,idChecklists,shortUrl,due,idMembers,url,attachments,dateLastActivity"
+            example: "all"
+        - in: query
+          name: attachments
+          description: "Include attachments on cards. `true`, `false`, or `cover` (cover only)."
+          required: false
+          schema:
+            type: string
+            enum: ["true", "false", "cover"]
+            default: "true"
+        - in: query
+          name: attachment_fields
+          description: "`all` or a comma-separated list of attachment fields to return (e.g. url, name, id)."
+          required: false
+          schema:
+            type: string
+            default: "url"
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Card"
+  /boards/{id}/members:
+    get:
+      operationId: getBoardMembers
+      summary: Get the Members of a Board
+      description: Get the Members for a board
+      parameters:
+        - in: path
+          name: id
+          description: The ID of the board
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: fields
+          description: "`all` or a comma-separated list of member fields (e.g. id, fullName, username, email)"
+          required: false
+          schema:
+            type: string
+            default: "id,fullName,username"
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Member"
+  /members/{id}:
+    get:
+      operationId: getMember
+      summary: Get a Member
+      description: Get a member by ID or username
+      parameters:
+        - in: path
+          name: id
+          description: The ID or username of the member
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: fields
+          description: "`all` or a comma-separated list of member fields (e.g. id, fullName, email)"
+          required: false
+          schema:
+            type: string
+            default: "id,fullName,email"
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Member"
+  /cards/{id}/checklists:
+    post:
+      operationId: addChecklistOnCard
+      summary: Create Checklist on a Card
+      description: Create a new checklist on a card
+      parameters:
+        - in: path
+          name: id
+          description: The ID of the Card
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: name
+          description: The name of the checklist
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: idChecklistSource
+          description: The ID of a source checklist to copy into the new one
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: pos
+          description: "The position of the checklist on the card. One of: `top`, `bottom`, or a positive number."
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Success
+  /checklists/{id}/checkItems:
+    post:
+      operationId: addChecklistItemOnCard
+      summary: Create Checkitem on Checklist
+      description: Add a check item to a checklist
+      parameters:
+        - in: path
+          name: id
+          description: ID of the checklist
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: name
+          description: The name of the new check item. 1 to 16384 characters.
+          required: true
+          schema:
+            type: string
+            minLength: 1
+            maxLength: 16384
+      responses:
+        "200":
+          description: Success
+  /card/{id}/attachments:
+    get:
+      operationId: getAttachmentsOnCard
+      summary: Get Attachments on a Card
+      description: List the attachments on a card
+      parameters:
+        - in: path
+          name: id
+          description: The ID of the Card
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: fields
+          description: "`all` or a comma-separated list of attachment fields"
+          required: false
+          schema:
+            type: string
+            default: "all"
+        - in: query
+          name: filter
+          description: Use `cover` to restrict to just the cover attachment
+          required: false
+          schema:
+            type: string
+            default: "false"
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Attachment"
   /members/me/boards:
     get:
       operationId: getBoards
@@ -106,6 +439,27 @@ paths:
                 items: { $ref: "#/components/schemas/TrelloList" }
 components:
   schemas:
+    Member:
+      type: object
+      description: Trello member (user). Fields returned depend on the `fields` query parameter.
+      properties:
+        id:
+          type: string
+          description: Trello ID of the member
+        fullName:
+          type: string
+          description: Full display name
+        username:
+          type: string
+          description: Username
+        email:
+          type: string
+          format: email
+          description: Email (when requested and permitted)
+        avatarHash:
+          type: string
+        initials:
+          type: string
     Card:
       allOf:
         - $ref: "#/components/schemas/NewCard"
@@ -133,17 +487,45 @@ components:
             url:
               type: string
               format: uri
-              example: "https://trello.com/c/aJidRx3k/9-123"
-              description: url to the Trello card
-            idMembers:
+              example: "https://trello.com/c/MJY0YkTK/135-markus-test-card"
+              description: full url to the Trello card
+            shortUrl:
+              type: string
+              format: uri
+              example: "https://trello.com/c/aJidRx3k"
+              description: short url to the Trello card
+            idChecklists:
               type: array
-              description: Array of memebr ids as strings
               items:
                 type: string
+                example: "5e5c1f7d35b240381adccdcb"
+              description: Array of checklist ids as strings
             attachments:
               type: array
               items:
                 type: object
+    Attachment:
+      type: object
+      properties:
+        id:
+          type: string
+        bytes:
+          type: string
+          nullable: true
+        date:
+          type: string
+          format: date
+        idMember:
+          type: string
+        isUpload:
+          type: boolean
+        mimeType:
+          type: string
+        name:
+          type: string
+        url:
+          type: string
+          format: uri
     NewCard:
       type: object
       required:
@@ -173,6 +555,11 @@ components:
           type: string
           format: uri
           example: https://www.example.com
+        idMembers:
+          type: array
+          description: Array of memebr ids as strings
+          items:
+            type: string
         contactId:
           type: integer
           minimum: 0

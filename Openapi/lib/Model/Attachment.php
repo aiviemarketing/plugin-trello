@@ -22,7 +22,7 @@ namespace MauticPlugin\MauticTrelloBundle\Openapi\lib\Model;
 use MauticPlugin\MauticTrelloBundle\Openapi\lib\ObjectSerializer;
 
 /**
- * NewCard Class Doc Comment.
+ * Attachment Class Doc Comment.
  *
  * @category Class
  *
@@ -32,7 +32,7 @@ use MauticPlugin\MauticTrelloBundle\Openapi\lib\ObjectSerializer;
  *
  * @implements \ArrayAccess<string, mixed>
  */
-class NewCard implements ModelInterface, \ArrayAccess, \JsonSerializable
+class Attachment implements ModelInterface, \ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -41,7 +41,7 @@ class NewCard implements ModelInterface, \ArrayAccess, \JsonSerializable
      *
      * @var string
      */
-    protected static $openAPIModelName = 'NewCard';
+    protected static $openAPIModelName = 'Attachment';
 
     /**
      * Array of property to type mappings. Used for (de)serialization.
@@ -49,15 +49,14 @@ class NewCard implements ModelInterface, \ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $openAPITypes = [
-        'name'           => 'string',
-        'idList'         => 'string',
-        'desc'           => 'string',
-        'pos'            => 'string',
-        'due'            => '\DateTime',
-        'urlSource'      => 'string',
-        'idMembers'      => 'string[]',
-        'contactId'      => 'int',
-        'keepFromSource' => 'string',
+        'id'       => 'string',
+        'bytes'    => 'string',
+        'date'     => '\DateTime',
+        'idMember' => 'string',
+        'isUpload' => 'bool',
+        'mimeType' => 'string',
+        'name'     => 'string',
+        'url'      => 'string',
     ];
 
     /**
@@ -70,15 +69,14 @@ class NewCard implements ModelInterface, \ArrayAccess, \JsonSerializable
      * @psalm-var array<string, string|null>
      */
     protected static $openAPIFormats = [
-        'name'           => null,
-        'idList'         => null,
-        'desc'           => null,
-        'pos'            => null,
-        'due'            => 'date-time',
-        'urlSource'      => 'uri',
-        'idMembers'      => null,
-        'contactId'      => null,
-        'keepFromSource' => null,
+        'id'       => null,
+        'bytes'    => null,
+        'date'     => 'date',
+        'idMember' => null,
+        'isUpload' => null,
+        'mimeType' => null,
+        'name'     => null,
+        'url'      => 'uri',
     ];
 
     /**
@@ -87,15 +85,14 @@ class NewCard implements ModelInterface, \ArrayAccess, \JsonSerializable
      * @var bool[]
      */
     protected static array $openAPINullables = [
-        'name'           => false,
-        'idList'         => false,
-        'desc'           => false,
-        'pos'            => false,
-        'due'            => false,
-        'urlSource'      => false,
-        'idMembers'      => false,
-        'contactId'      => false,
-        'keepFromSource' => false,
+        'id'       => false,
+        'bytes'    => true,
+        'date'     => false,
+        'idMember' => false,
+        'isUpload' => false,
+        'mimeType' => false,
+        'name'     => false,
+        'url'      => false,
     ];
 
     /**
@@ -176,15 +173,14 @@ class NewCard implements ModelInterface, \ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'name'           => 'name',
-        'idList'         => 'idList',
-        'desc'           => 'desc',
-        'pos'            => 'pos',
-        'due'            => 'due',
-        'urlSource'      => 'urlSource',
-        'idMembers'      => 'idMembers',
-        'contactId'      => 'contactId',
-        'keepFromSource' => 'keepFromSource',
+        'id'       => 'id',
+        'bytes'    => 'bytes',
+        'date'     => 'date',
+        'idMember' => 'idMember',
+        'isUpload' => 'isUpload',
+        'mimeType' => 'mimeType',
+        'name'     => 'name',
+        'url'      => 'url',
     ];
 
     /**
@@ -193,15 +189,14 @@ class NewCard implements ModelInterface, \ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'name'           => 'setName',
-        'idList'         => 'setIdList',
-        'desc'           => 'setDesc',
-        'pos'            => 'setPos',
-        'due'            => 'setDue',
-        'urlSource'      => 'setUrlSource',
-        'idMembers'      => 'setIdMembers',
-        'contactId'      => 'setContactId',
-        'keepFromSource' => 'setKeepFromSource',
+        'id'       => 'setId',
+        'bytes'    => 'setBytes',
+        'date'     => 'setDate',
+        'idMember' => 'setIdMember',
+        'isUpload' => 'setIsUpload',
+        'mimeType' => 'setMimeType',
+        'name'     => 'setName',
+        'url'      => 'setUrl',
     ];
 
     /**
@@ -210,15 +205,14 @@ class NewCard implements ModelInterface, \ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'name'           => 'getName',
-        'idList'         => 'getIdList',
-        'desc'           => 'getDesc',
-        'pos'            => 'getPos',
-        'due'            => 'getDue',
-        'urlSource'      => 'getUrlSource',
-        'idMembers'      => 'getIdMembers',
-        'contactId'      => 'getContactId',
-        'keepFromSource' => 'getKeepFromSource',
+        'id'       => 'getId',
+        'bytes'    => 'getBytes',
+        'date'     => 'getDate',
+        'idMember' => 'getIdMember',
+        'isUpload' => 'getIsUpload',
+        'mimeType' => 'getMimeType',
+        'name'     => 'getName',
+        'url'      => 'getUrl',
     ];
 
     /**
@@ -277,15 +271,14 @@ class NewCard implements ModelInterface, \ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
+        $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('bytes', $data ?? [], null);
+        $this->setIfExists('date', $data ?? [], null);
+        $this->setIfExists('idMember', $data ?? [], null);
+        $this->setIfExists('isUpload', $data ?? [], null);
+        $this->setIfExists('mimeType', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('idList', $data ?? [], null);
-        $this->setIfExists('desc', $data ?? [], null);
-        $this->setIfExists('pos', $data ?? [], null);
-        $this->setIfExists('due', $data ?? [], null);
-        $this->setIfExists('urlSource', $data ?? [], null);
-        $this->setIfExists('idMembers', $data ?? [], null);
-        $this->setIfExists('contactId', $data ?? [], null);
-        $this->setIfExists('keepFromSource', $data ?? [], null);
+        $this->setIfExists('url', $data ?? [], null);
     }
 
     /**
@@ -313,24 +306,6 @@ class NewCard implements ModelInterface, \ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if (null === $this->container['name']) {
-            $invalidProperties[] = "'name' can't be null";
-        }
-        if (mb_strlen($this->container['name']) < 1) {
-            $invalidProperties[] = "invalid value for 'name', the character length must be bigger than or equal to 1.";
-        }
-
-        if (null === $this->container['idList']) {
-            $invalidProperties[] = "'idList' can't be null";
-        }
-        if (mb_strlen($this->container['idList']) < 1) {
-            $invalidProperties[] = "invalid value for 'idList', the character length must be bigger than or equal to 1.";
-        }
-
-        if (!is_null($this->container['contactId']) && ($this->container['contactId'] < 0)) {
-            $invalidProperties[] = "invalid value for 'contactId', must be bigger than or equal to 0.";
-        }
-
         return $invalidProperties;
     }
 
@@ -346,9 +321,178 @@ class NewCard implements ModelInterface, \ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets id.
+     *
+     * @return string|null
+     */
+    public function getId()
+    {
+        return $this->container['id'];
+    }
+
+    /**
+     * Sets id.
+     *
+     * @param string|null $id id
+     *
+     * @return self
+     */
+    public function setId($id)
+    {
+        if (is_null($id)) {
+            throw new \InvalidArgumentException('non-nullable id cannot be null');
+        }
+        $this->container['id'] = $id;
+
+        return $this;
+    }
+
+    /**
+     * Gets bytes.
+     *
+     * @return string|null
+     */
+    public function getBytes()
+    {
+        return $this->container['bytes'];
+    }
+
+    /**
+     * Sets bytes.
+     *
+     * @param string|null $bytes bytes
+     *
+     * @return self
+     */
+    public function setBytes($bytes)
+    {
+        if (is_null($bytes)) {
+            array_push($this->openAPINullablesSetToNull, 'bytes');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index              = array_search('bytes', $nullablesSetToNull);
+            if (false !== $index) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['bytes'] = $bytes;
+
+        return $this;
+    }
+
+    /**
+     * Gets date.
+     *
+     * @return \DateTime|null
+     */
+    public function getDate()
+    {
+        return $this->container['date'];
+    }
+
+    /**
+     * Sets date.
+     *
+     * @param \DateTime|null $date date
+     *
+     * @return self
+     */
+    public function setDate($date)
+    {
+        if (is_null($date)) {
+            throw new \InvalidArgumentException('non-nullable date cannot be null');
+        }
+        $this->container['date'] = $date;
+
+        return $this;
+    }
+
+    /**
+     * Gets idMember.
+     *
+     * @return string|null
+     */
+    public function getIdMember()
+    {
+        return $this->container['idMember'];
+    }
+
+    /**
+     * Sets idMember.
+     *
+     * @param string|null $idMember idMember
+     *
+     * @return self
+     */
+    public function setIdMember($idMember)
+    {
+        if (is_null($idMember)) {
+            throw new \InvalidArgumentException('non-nullable idMember cannot be null');
+        }
+        $this->container['idMember'] = $idMember;
+
+        return $this;
+    }
+
+    /**
+     * Gets isUpload.
+     *
+     * @return bool|null
+     */
+    public function getIsUpload()
+    {
+        return $this->container['isUpload'];
+    }
+
+    /**
+     * Sets isUpload.
+     *
+     * @param bool|null $isUpload isUpload
+     *
+     * @return self
+     */
+    public function setIsUpload($isUpload)
+    {
+        if (is_null($isUpload)) {
+            throw new \InvalidArgumentException('non-nullable isUpload cannot be null');
+        }
+        $this->container['isUpload'] = $isUpload;
+
+        return $this;
+    }
+
+    /**
+     * Gets mimeType.
+     *
+     * @return string|null
+     */
+    public function getMimeType()
+    {
+        return $this->container['mimeType'];
+    }
+
+    /**
+     * Sets mimeType.
+     *
+     * @param string|null $mimeType mimeType
+     *
+     * @return self
+     */
+    public function setMimeType($mimeType)
+    {
+        if (is_null($mimeType)) {
+            throw new \InvalidArgumentException('non-nullable mimeType cannot be null');
+        }
+        $this->container['mimeType'] = $mimeType;
+
+        return $this;
+    }
+
+    /**
      * Gets name.
      *
-     * @return string
+     * @return string|null
      */
     public function getName()
     {
@@ -358,7 +502,7 @@ class NewCard implements ModelInterface, \ArrayAccess, \JsonSerializable
     /**
      * Sets name.
      *
-     * @param string $name Card Name
+     * @param string|null $name name
      *
      * @return self
      */
@@ -367,238 +511,34 @@ class NewCard implements ModelInterface, \ArrayAccess, \JsonSerializable
         if (is_null($name)) {
             throw new \InvalidArgumentException('non-nullable name cannot be null');
         }
-
-        if (mb_strlen($name) < 1) {
-            throw new \InvalidArgumentException('invalid length for $name when calling NewCard., must be bigger than or equal to 1.');
-        }
-
         $this->container['name'] = $name;
 
         return $this;
     }
 
     /**
-     * Gets idList.
-     *
-     * @return string
-     */
-    public function getIdList()
-    {
-        return $this->container['idList'];
-    }
-
-    /**
-     * Sets idList.
-     *
-     * @param string $idList The ID of the list the card should be created in
-     *
-     * @return self
-     */
-    public function setIdList($idList)
-    {
-        if (is_null($idList)) {
-            throw new \InvalidArgumentException('non-nullable idList cannot be null');
-        }
-
-        if (mb_strlen($idList) < 1) {
-            throw new \InvalidArgumentException('invalid length for $idList when calling NewCard., must be bigger than or equal to 1.');
-        }
-
-        $this->container['idList'] = $idList;
-
-        return $this;
-    }
-
-    /**
-     * Gets desc.
+     * Gets url.
      *
      * @return string|null
      */
-    public function getDesc()
+    public function getUrl()
     {
-        return $this->container['desc'];
+        return $this->container['url'];
     }
 
     /**
-     * Sets desc.
+     * Sets url.
      *
-     * @param string|null $desc Card Description
+     * @param string|null $url url
      *
      * @return self
      */
-    public function setDesc($desc)
+    public function setUrl($url)
     {
-        if (is_null($desc)) {
-            throw new \InvalidArgumentException('non-nullable desc cannot be null');
+        if (is_null($url)) {
+            throw new \InvalidArgumentException('non-nullable url cannot be null');
         }
-        $this->container['desc'] = $desc;
-
-        return $this;
-    }
-
-    /**
-     * Gets pos.
-     *
-     * @return string|null
-     */
-    public function getPos()
-    {
-        return $this->container['pos'];
-    }
-
-    /**
-     * Sets pos.
-     *
-     * @param string|null $pos pos
-     *
-     * @return self
-     */
-    public function setPos($pos)
-    {
-        if (is_null($pos)) {
-            throw new \InvalidArgumentException('non-nullable pos cannot be null');
-        }
-        $this->container['pos'] = $pos;
-
-        return $this;
-    }
-
-    /**
-     * Gets due.
-     *
-     * @return \DateTime|null
-     */
-    public function getDue()
-    {
-        return $this->container['due'];
-    }
-
-    /**
-     * Sets due.
-     *
-     * @param \DateTime|null $due full-date notation as defined by RFC 3339, section 5.6. Default Timezone is UTC
-     *
-     * @return self
-     */
-    public function setDue($due)
-    {
-        if (is_null($due)) {
-            throw new \InvalidArgumentException('non-nullable due cannot be null');
-        }
-        $this->container['due'] = $due;
-
-        return $this;
-    }
-
-    /**
-     * Gets urlSource.
-     *
-     * @return string|null
-     */
-    public function getUrlSource()
-    {
-        return $this->container['urlSource'];
-    }
-
-    /**
-     * Sets urlSource.
-     *
-     * @param string|null $urlSource urlSource
-     *
-     * @return self
-     */
-    public function setUrlSource($urlSource)
-    {
-        if (is_null($urlSource)) {
-            throw new \InvalidArgumentException('non-nullable urlSource cannot be null');
-        }
-        $this->container['urlSource'] = $urlSource;
-
-        return $this;
-    }
-
-    /**
-     * Gets idMembers.
-     *
-     * @return string[]|null
-     */
-    public function getIdMembers()
-    {
-        return $this->container['idMembers'];
-    }
-
-    /**
-     * Sets idMembers.
-     *
-     * @param string[]|null $idMembers Array of memebr ids as strings
-     *
-     * @return self
-     */
-    public function setIdMembers($idMembers)
-    {
-        if (is_null($idMembers)) {
-            throw new \InvalidArgumentException('non-nullable idMembers cannot be null');
-        }
-        $this->container['idMembers'] = $idMembers;
-
-        return $this;
-    }
-
-    /**
-     * Gets contactId.
-     *
-     * @return int|null
-     */
-    public function getContactId()
-    {
-        return $this->container['contactId'];
-    }
-
-    /**
-     * Sets contactId.
-     *
-     * @param int|null $contactId the ID of the Mautic contact (Lead)
-     *
-     * @return self
-     */
-    public function setContactId($contactId)
-    {
-        if (is_null($contactId)) {
-            throw new \InvalidArgumentException('non-nullable contactId cannot be null');
-        }
-
-        if ($contactId < 0) {
-            throw new \InvalidArgumentException('invalid value for $contactId when calling NewCard., must be bigger than or equal to 0.');
-        }
-
-        $this->container['contactId'] = $contactId;
-
-        return $this;
-    }
-
-    /**
-     * Gets keepFromSource.
-     *
-     * @return string|null
-     */
-    public function getKeepFromSource()
-    {
-        return $this->container['keepFromSource'];
-    }
-
-    /**
-     * Sets keepFromSource.
-     *
-     * @param string|null $keepFromSource if using idCardSource you can specify which properties to copy over
-     *
-     * @return self
-     */
-    public function setKeepFromSource($keepFromSource)
-    {
-        if (is_null($keepFromSource)) {
-            throw new \InvalidArgumentException('non-nullable keepFromSource cannot be null');
-        }
-        $this->container['keepFromSource'] = $keepFromSource;
+        $this->container['url'] = $url;
 
         return $this;
     }

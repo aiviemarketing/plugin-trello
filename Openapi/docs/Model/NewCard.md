@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **pos** | **string** |  | [optional]
 **due** | **\DateTime** | full-date notation as defined by RFC 3339, section 5.6. Default Timezone is UTC | [optional]
 **urlSource** | **string** |  | [optional]
+**idMembers** | **string[]** | Array of memebr ids as strings | [optional]
 **contactId** | **int** | The ID of the Mautic contact (Lead). | [optional]
 **keepFromSource** | **string** | If using idCardSource you can specify which properties to copy over. | [optional]
 
