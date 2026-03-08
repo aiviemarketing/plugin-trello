@@ -1,17 +1,8 @@
 <?php
-/**
- * UpdateCardPosParameterOneOf
- *
- * PHP version 7.4
- *
- * @category Class
- * @package  MauticPlugin\MauticTrelloBundle\Openapi\lib
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
- */
+
 
 /**
- * Mautic Trello API
+ * Mautic Trello API.
  *
  * Create or update a card via the Trello API
  *
@@ -27,36 +18,35 @@
  */
 
 namespace MauticPlugin\MauticTrelloBundle\Openapi\lib\Model;
-use \MauticPlugin\MauticTrelloBundle\Openapi\lib\ObjectSerializer;
 
 /**
- * UpdateCardPosParameterOneOf Class Doc Comment
+ * UpdateCardPosParameterOneOf Class Doc Comment.
  *
  * @category Class
- * @package  MauticPlugin\MauticTrelloBundle\Openapi\lib
+ *
  * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
+ *
+ * @see     https://openapi-generator.tech
  */
 class UpdateCardPosParameterOneOf
 {
     /**
-     * Possible values of this enum
+     * Possible values of this enum.
      */
     public const TOP = 'top';
 
     public const BOTTOM = 'bottom';
 
     /**
-     * Gets allowable values of the enum
+     * Gets allowable values of the enum.
+     *
      * @return string[]
      */
     public static function getAllowableEnumValues()
     {
         return [
             self::TOP,
-            self::BOTTOM
+            self::BOTTOM,
         ];
     }
 }
-
-

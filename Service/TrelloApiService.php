@@ -180,7 +180,7 @@ class TrelloApiService
         }
 
         $cards = $api->getCardsOnBoard($boardId);
-        
+
         if (!is_array($cards)) {
             $this->logger->warning('Trello: No cards found on board', ['boardId' => $boardId]);
 
@@ -191,7 +191,7 @@ class TrelloApiService
         $expectedUrl = $siteUrl.'/s/contacts/view/'.$leadId;
 
         // sort the cards by dateLastActivity descending
-        usort($cards, function($a, $b) {
+        usort($cards, function ($a, $b) {
             return $b->getDateLastActivity() <=> $a->getDateLastActivity();
         });
         foreach ($cards as $card) {
@@ -245,7 +245,7 @@ class TrelloApiService
         }
 
         try {
-            $card = $api->updateCard($cardId, null, null, null, null, null, null, $dueDate,null,null,null,$idMembers);
+            $card = $api->updateCard($cardId, null, null, null, null, null, null, $dueDate, null, null, null, $idMembers);
 
             return $card instanceof Card ? $card : null;
         } catch (\Throwable $e) {

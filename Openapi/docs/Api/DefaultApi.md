@@ -1,5 +1,7 @@
 # MauticPlugin\MauticTrelloBundle\Openapi\lib\DefaultApi
 
+
+
 All URIs are relative to https://api.trello.com/1, except if the operation defines another base path.
 
 | Method | HTTP request | Description |
@@ -757,9 +759,9 @@ $desc = 'desc_example'; // string | The new description for the card
 $closed = True; // bool | Whether the card should be archived (closed true)
 $idList = 'idList_example'; // string | The ID of the list the card should be in
 $idBoard = 'idBoard_example'; // string | The ID of the board the card should be on
-$pos = new \MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\UpdateCardPosParameter(); // UpdateCardPosParameter | The position of the card in its list. top, bottom, or a positive float
-$due = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime | When the card is due, or null
-$start = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime | The start date of a card, or null
+$pos = new \MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\UpdateCardPosParameter(); // \MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\UpdateCardPosParameter | The position of the card in its list. top, bottom, or a positive float
+$due = new \DateTime('2013-10-20T19:20:30+01:00'); // \DateTime | When the card is due, or null
+$start = new \DateTime('2013-10-20T19:20:30+01:00'); // \DateTime | The start date of a card, or null
 $dueComplete = True; // bool | Whether the status of the card is complete
 $subscribed = True; // bool | Whether the member should be subscribed to the card
 $idMembers = 'idMembers_example'; // string | Comma-separated list of member IDs
@@ -784,7 +786,7 @@ try {
 | **closed** | **bool**| Whether the card should be archived (closed true) | [optional] |
 | **idList** | **string**| The ID of the list the card should be in | [optional] |
 | **idBoard** | **string**| The ID of the board the card should be on | [optional] |
-| **pos** | [**UpdateCardPosParameter**](../Model/.md)| The position of the card in its list. top, bottom, or a positive float | [optional] |
+| **pos** | [**\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\UpdateCardPosParameter**](../Model/.md)| The position of the card in its list. top, bottom, or a positive float | [optional] |
 | **due** | **\DateTime**| When the card is due, or null | [optional] |
 | **start** | **\DateTime**| The start date of a card, or null | [optional] |
 | **dueComplete** | **bool**| Whether the status of the card is complete | [optional] |
