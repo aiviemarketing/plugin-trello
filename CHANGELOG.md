@@ -1,0 +1,18 @@
+# Changelog
+
+
+## 1.1.0 (2026-03-08)
+
+
+### Features
+
+* add member to card based on users email address, add api endpoints for task creation ([b141275](https://github.com/adiux/mautic-trello/commit/b14127519039b310bf67715be0d91b07df2c70fa))
+* find user as trello member by email and add to card. Default due date is +1 week ([8c0b6c0](https://github.com/adiux/mautic-trello/commit/8c0b6c0a101cbb193709ca149e5dc6ea12999ccf))
+
+
+### Bug Fixes
+
+* handle empty trello api keys better ([95ddb05](https://github.com/adiux/mautic-trello/commit/95ddb05d950c9c9a04a5fffc02e317e781e4fdef))
+* non-nullable due cannot be null exception ([eaa9830](https://github.com/adiux/mautic-trello/commit/eaa98304dbe1a539fb3e072110b99f7636469801))
+* PHP Notice - Undefined offset: 1 on empty trello keys ([5df6ab9](https://github.com/adiux/mautic-trello/commit/5df6ab9446200483be63add2e734b7adf2a99146))
+* TranslatorInterface ([5e68a63](https://github.com/adiux/mautic-trello/commit/5e68a63f67b6d2328afb4f71273dbae1ce365e3f))

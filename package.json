@@ -1,11 +1,14 @@
 {
   "name": "mautic-trello",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": "Mautic",
   "devDependencies": {
-    "@openapitools/openapi-generator-cli": "2.2.6"
+    "@openapitools/openapi-generator-cli": "2.2.6",
+    "standard-version": "^9.5.0"
   },
   "scripts": {
+    "release": "standard-version",
+    "release:dry-run": "standard-version --dry-run",
     "start-mock-server": "prism mock -d Docs/api/i2-trello.oas3.yml",
     "test": "../../bin/phpunit --bootstrap ../../vendor/autoload.php --configuration ../../app/phpunit.xml.dist --filter MauticTrelloBundle",
     "generate-api-trello": "openapi-generator-cli generate -i Docs/api/i2-trello.oas3.yml -g php -o Openapi --additional-properties='invokerPackage=MauticPlugin\\\\MauticTrelloBundle\\\\Openapi\\\\lib,bundleName=MauticTrello,phpLegacySupport=false,variableNamingConvention=camelCase' && npm run remove-not-needed-code && npm run format-all-code",
