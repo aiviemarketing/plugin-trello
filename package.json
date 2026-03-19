@@ -3,6 +3,8 @@
   "version": "1.1.0",
   "author": "Mautic",
   "devDependencies": {
+    "@commitlint/cli": "^20.1.0",
+    "@commitlint/config-conventional": "^20.0.0",
     "@openapitools/openapi-generator-cli": "2.2.6",
     "standard-version": "^9.5.0"
   },
