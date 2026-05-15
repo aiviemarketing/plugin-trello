@@ -207,7 +207,7 @@ class CardController extends AbstractFormController
     /**
      * Build the form.
      */
-    protected function getForm(Request $request, int $contactId = null): ?FormInterface
+    protected function getForm(Request $request, ?int $contactId = null): ?FormInterface
     {
         $returnRoute = $request->get('returnRoute');
         if (empty($returnRoute)) {
@@ -287,12 +287,12 @@ class CardController extends AbstractFormController
                 if ($list->getName() === $stage->getName()) {
                     $this->logger->debug('Trello: contact is on list', [$list->getName()]);
 
-                    return $list->getName();
+                    return $list->getId();
                 }
             }
         }
         $this->logger->debug('Trello: Stage is not a Trello list. Adding it to the first list.', [
-            'stage' => $stage->getName(),
+            'stage' => $stage?->getName(),
             'list'  => $lists[0]->getId(),
         ]);
 
