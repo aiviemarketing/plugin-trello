@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace MauticPlugin\MauticTrelloBundle\Tests\Unit\Service;
+namespace MauticPlugin\AivieTrelloBundle\Tests\Unit\Service;
 
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Test the Mautic Trello API Services against a Prism mock server.
+ * Test the Aivie Trello API Services against a Prism mock server.
  * Enable and run when Prism is available (e.g. stoplight/prism).
  */
 class TrelloApiServicePrismTest extends TestCase

@@ -2,23 +2,23 @@
 
 declare(strict_types=1);
 
-namespace MauticPlugin\MauticTrelloBundle\Integration;
+namespace MauticPlugin\AivieTrelloBundle\Integration;
 
 use Mautic\IntegrationsBundle\Integration\BasicIntegration;
 use Mautic\IntegrationsBundle\Integration\ConfigurationTrait;
 use Mautic\IntegrationsBundle\Integration\Interfaces\BasicInterface;
 
 /**
- * Class TrelloIntegration.
+ * Class AivieTrelloIntegration.
  *
  * Handles the authorization process, integration configuration, etc.
  */
-class TrelloIntegration extends BasicIntegration implements BasicInterface
+class AivieTrelloIntegration extends BasicIntegration implements BasicInterface
 {
     use ConfigurationTrait;
 
-    public const NAME         = 'Trello';
-    public const DISPLAY_NAME = 'Trello';
+    public const NAME         = 'AivieTrello';
+    public const DISPLAY_NAME = 'Aivie Trello';
 
     public function getName(): string
     {
@@ -32,6 +32,6 @@ class TrelloIntegration extends BasicIntegration implements BasicInterface
 
     public function getIcon(): string
     {
-        return 'plugins/MauticTrelloBundle/Assets/img/trello.png';
+        return 'plugins/AivieTrelloBundle/Assets/img/trello.png';
     }
 }

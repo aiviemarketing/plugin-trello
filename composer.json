@@ -1,8 +1,8 @@
 {
-  "name": "aiviemarketing/mautic-trello",
+  "name": "aiviemarketing/plugin-trello",
   "description": "Add Trello cards from Mautic.",
   "type": "mautic-plugin",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "license": "GPL-3.0-or-later",
   "authors": [
     {
@@ -16,11 +16,11 @@
     "integration",
     "aivie"
   ],
-  "homepage": "https://github.com/aiviemarketing/mautic-trello",
+  "homepage": "https://github.com/aiviemarketing/plugin-trello",
   "support": {
-    "issues": "https://github.com/aiviemarketing/mautic-trello/issues",
-    "source": "https://github.com/aiviemarketing/mautic-trello",
-    "docs": "https://github.com/aiviemarketing/mautic-trello#readme"
+    "issues": "https://github.com/aiviemarketing/plugin-trello/issues",
+    "source": "https://github.com/aiviemarketing/plugin-trello",
+    "docs": "https://github.com/aiviemarketing/plugin-trello#readme"
   },
   "funding": [
     {
@@ -33,7 +33,7 @@
     "mautic/core-lib": "^6.0"
   },
   "extra": {
-    "install-directory-name": "MauticTrelloBundle"
+    "install-directory-name": "AivieTrelloBundle"
   },
   "minimum-stability": "dev",
   "prefer-stable": true,

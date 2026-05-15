@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace MauticPlugin\MauticTrelloBundle\Tests\Mock;
+namespace MauticPlugin\AivieTrelloBundle\Tests\Mock;
 
-use MauticPlugin\MauticTrelloBundle\Openapi\lib\Api\DefaultApi;
-use MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Card;
-use MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\NewCard;
-use MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\TrelloBoard;
-use MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\TrelloList;
+use MauticPlugin\AivieTrelloBundle\Openapi\lib\Api\DefaultApi;
+use MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Card;
+use MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\NewCard;
+use MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\TrelloBoard;
+use MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\TrelloList;
 
 /**
  * Return static mock data for the Trello API.

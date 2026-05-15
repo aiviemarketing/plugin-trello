@@ -16,24 +16,3 @@
     { "type": "ci", "hidden": true }
   ]
 }
-{
-  "header": "# Changelog\n\n",
-  "bumpFiles": [
-    { "filename": "composer.json", "type": "json" }
-  ],
-  "types": [
-    { "type": "feat", "section": "Features" },
-    { "type": "fix", "section": "Bug Fixes" },
-    { "type": "ux", "section": "UX", "release": "patch" },
-    { "type": "perf", "section": "Performance Improvements" },
-    { "type": "refactor", "section": "Refactoring" },
-    { "type": "revert", "section": "Reverts" },
-    { "type": "docs", "section": "Docs", "hidden": false },
-    { "type": "style", "hidden": true },
-    { "type": "chore", "hidden": true },
-    { "type": "test", "hidden": true },
-    { "type": "build", "hidden": true },
-    { "type": "ci", "hidden": true }
-  ],
-  "commitAll": true
-}

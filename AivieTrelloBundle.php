@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace MauticPlugin\MauticTrelloBundle;
+namespace MauticPlugin\AivieTrelloBundle;
 
 use Mautic\IntegrationsBundle\Bundle\AbstractPluginBundle;
 
-class MauticTrelloBundle extends AbstractPluginBundle
+class AivieTrelloBundle extends AbstractPluginBundle
 {
 }

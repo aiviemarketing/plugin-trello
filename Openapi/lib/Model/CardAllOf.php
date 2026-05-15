@@ -2,7 +2,7 @@
 
 
 /**
- * Mautic Trello API.
+ * Aivie Trello API.
  *
  * Create or update a card via the Trello API
  *
@@ -17,9 +17,9 @@
  * Do not edit the class manually.
  */
 
-namespace MauticPlugin\MauticTrelloBundle\Openapi\lib\Model;
+namespace MauticPlugin\AivieTrelloBundle\Openapi\lib\Model;
 
-use MauticPlugin\MauticTrelloBundle\Openapi\lib\ObjectSerializer;
+use MauticPlugin\AivieTrelloBundle\Openapi\lib\ObjectSerializer;
 
 /**
  * CardAllOf Class Doc Comment.
@@ -269,7 +269,7 @@ class CardAllOf implements ModelInterface, \ArrayAccess, \JsonSerializable
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('dateLastActivity', $data ?? [], null);

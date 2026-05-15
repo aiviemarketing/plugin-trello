@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace MauticPlugin\MauticTrelloBundle\EventListener;
+namespace MauticPlugin\AivieTrelloBundle\EventListener;
 
 use Mautic\CoreBundle\CoreEvents;
 use Mautic\CoreBundle\Event\CustomButtonEvent;
 use Mautic\CoreBundle\Twig\Helper\ButtonHelper;
 use Mautic\LeadBundle\Entity\Lead;
-use MauticPlugin\MauticTrelloBundle\Integration\Config;
+use MauticPlugin\AivieTrelloBundle\Integration\Config;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;

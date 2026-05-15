@@ -2,7 +2,7 @@
 
 
 /**
- * Mautic Trello API.
+ * Aivie Trello API.
  *
  * Create or update a card via the Trello API
  *
@@ -17,7 +17,7 @@
  * Do not edit the class manually.
  */
 
-namespace MauticPlugin\MauticTrelloBundle\Openapi\lib;
+namespace MauticPlugin\AivieTrelloBundle\Openapi\lib;
 
 /**
  * Configuration Class Doc Comment
@@ -491,7 +491,7 @@ class Configuration
      */
     public static function toDebugReport()
     {
-        $report  = 'PHP SDK (MauticPlugin\MauticTrelloBundle\Openapi\lib) Debug Report:'.PHP_EOL;
+        $report  = 'PHP SDK (MauticPlugin\AivieTrelloBundle\Openapi\lib) Debug Report:'.PHP_EOL;
         $report .= '    OS: '.php_uname().PHP_EOL;
         $report .= '    PHP Version: '.PHP_VERSION.PHP_EOL;
         $report .= '    The version of the OpenAPI document: 0.1.1'.PHP_EOL;

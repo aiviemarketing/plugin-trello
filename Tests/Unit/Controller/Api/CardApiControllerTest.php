@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace MauticPlugin\MauticTrelloBundle\Tests\Unit\Controller\Api;
+namespace MauticPlugin\AivieTrelloBundle\Tests\Unit\Controller\Api;
 
 use Mautic\LeadBundle\Entity\Lead;
-use MauticPlugin\MauticTrelloBundle\Controller\Api\CardApiController;
-use MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Card;
-use MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\NewCard;
-use MauticPlugin\MauticTrelloBundle\Service\TrelloApiService;
-use MauticPlugin\MauticTrelloBundle\Tests\Mock\DefaultApiMock;
+use MauticPlugin\AivieTrelloBundle\Controller\Api\CardApiController;
+use MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Card;
+use MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\NewCard;
+use MauticPlugin\AivieTrelloBundle\Service\TrelloApiService;
+use MauticPlugin\AivieTrelloBundle\Tests\Mock\DefaultApiMock;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\LoggerInterface;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace MauticPlugin\MauticTrelloBundle\Controller;
+namespace MauticPlugin\AivieTrelloBundle\Controller;
 
 use Doctrine\Persistence\ManagerRegistry;
 use Mautic\CoreBundle\Controller\AbstractFormController;
@@ -14,10 +14,10 @@ use Mautic\CoreBundle\Service\FlashBag;
 use Mautic\CoreBundle\Translation\Translator;
 use Mautic\LeadBundle\Controller\LeadAccessTrait;
 use Mautic\LeadBundle\Entity\Lead;
-use MauticPlugin\MauticTrelloBundle\Form\NewCardType;
-use MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Card;
-use MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\NewCard;
-use MauticPlugin\MauticTrelloBundle\Service\TrelloApiService;
+use MauticPlugin\AivieTrelloBundle\Form\NewCardType;
+use MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Card;
+use MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\NewCard;
+use MauticPlugin\AivieTrelloBundle\Service\TrelloApiService;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Form\FormInterface;
@@ -73,7 +73,7 @@ class CardController extends AbstractFormController
                 'viewParameters' => [
                     'form' => $form->createView(),
                 ],
-                'contentTemplate' => '@MauticTrello/Card/new.html.twig',
+                'contentTemplate' => '@AivieTrello/Card/new.html.twig',
             ]
         );
     }

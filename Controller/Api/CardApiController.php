@@ -1,6 +1,6 @@
 <?php
 
-namespace MauticPlugin\MauticTrelloBundle\Controller\Api;
+namespace MauticPlugin\AivieTrelloBundle\Controller\Api;
 
 use Doctrine\Persistence\ManagerRegistry;
 use Mautic\CoreBundle\Factory\ModelFactory;
@@ -10,9 +10,9 @@ use Mautic\CoreBundle\Helper\UserHelper;
 use Mautic\CoreBundle\Security\Permissions\CorePermissions;
 use Mautic\CoreBundle\Service\FlashBag;
 use Mautic\CoreBundle\Translation\Translator;
-use MauticPlugin\MauticTrelloBundle\Controller\CardController;
-use MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Card;
-use MauticPlugin\MauticTrelloBundle\Service\TrelloApiService;
+use MauticPlugin\AivieTrelloBundle\Controller\CardController;
+use MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Card;
+use MauticPlugin\AivieTrelloBundle\Service\TrelloApiService;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;

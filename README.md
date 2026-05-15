@@ -1,4 +1,4 @@
-# Mautic Trello Integration
+# Aivie Trello Integration
 
 Interact with Trello directly from Mauitc. E.g. create Trello cards for contacts.
 
@@ -8,7 +8,7 @@ Interact with Trello directly from Mauitc. E.g. create Trello cards for contacts
 
 - [Mautic](https://www.mautic.org) > v4.0.0
 - [Trello](https://www.trello.com)
-- This plugin is already installed with your [Aivie Mautic Hosting](https://aivie.ch/en/mautic-hosting-and-installation/?utm_source=github&utm_medium=mautic-trello&utm_campaign=opensource&utm_content=hosting)
+- This plugin is already installed with your [Aivie Mautic Hosting](https://aivie.ch/en/mautic-hosting-and-installation/?utm_source=github&utm_medium=plugin-trello&utm_campaign=opensource&utm_content=hosting)
 
 ## Enduser Documentation
 
@@ -16,14 +16,14 @@ Interact with Trello directly from Mauitc. E.g. create Trello cards for contacts
 - [German](docs/enduser/docs.de.md)
 
 ## See Aivie/Mautic contact data in Trello
-There is a companion [Trello Power-UP](https://aivie.ch/mautic-mit-trello-verbinden/?utm_source=github&utm_medium=mautic-trello&utm_campaign=opensource&utm_content=trello-power-up) available to show your latest contact data right inside of Trello.
+There is a companion [Trello Power-UP](https://aivie.ch/mautic-mit-trello-verbinden/?utm_source=github&utm_medium=plugin-trello&utm_campaign=opensource&utm_content=trello-power-up) available to show your latest contact data right inside of Trello.
 
 # Issue? / Feedback? / Feature Requests?
 
 We are always looking for new ways to improve working with Mautic. Please contact us if you have a feature request, or found an issue.
 
-- [Issues](https://github.com/adiux/mautic-trello/issues)
-- [Contact](https://aivie.ch/en/contact/?utm_source=github&utm_medium=mautic-trello&utm_campaign=opensource&utm_content=contact)
+- [Issues](https://github.com/adiux/plugin-trello/issues)
+- [Contact](https://aivie.ch/en/contact/?utm_source=github&utm_medium=plugin-trello&utm_campaign=opensource&utm_content=contact)
 
 # Contributing
 
@@ -36,7 +36,7 @@ npm install
 ## Run tests
 
 ```
-bin/phpunit --bootstrap vendor/autoload.php --configuration app/phpunit.xml.dist --filter MauticTrelloBundle
+bin/phpunit --bootstrap vendor/autoload.php --configuration app/phpunit.xml.dist --filter AivieTrelloBundle
 ```
 
 ## API Documentation
@@ -56,6 +56,6 @@ prism mock -d docs/api/i2-trello.oas3.yml
 ```
 
 ### Contributers
-<a href="https://aivie.ch/en/?utm_source=github&utm_medium=mautic-trello&utm_campaign=opensource&utm_content=contact>">Aivie</a><br>
-<a href="https://aivie.ch/en/?utm_source=github&utm_medium=mautic-trello&utm_campaign=opensource&utm_content=contact>">
+<a href="https://aivie.ch/en/?utm_source=github&utm_medium=plugin-trello&utm_campaign=opensource&utm_content=contact>">Aivie</a><br>
+<a href="https://aivie.ch/en/?utm_source=github&utm_medium=plugin-trello&utm_campaign=opensource&utm_content=contact>">
   <img width="200px" src="https://cdn.aivie.ch/media/wp/2021/06/19131704/logo-aivie-fast-kein-rand-400w.png"></img></a>

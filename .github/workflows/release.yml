@@ -1,36 +1,141 @@
 name: Release
 
 on:
-  push:
-    tags:
-      - 'v*'
+  workflow_dispatch:
+    inputs:
+      bump:
+        description: "Version bump (auto, patch, minor, major)"
+        required: true
+        default: auto
+        type: choice
+        options: [auto, patch, minor, major]
+      post_to_slack:
+        description: "Post release notes to Slack"
+        required: false
+        default: false
+        type: boolean
 
 permissions:
   contents: write
 
+concurrency:
+  group: release-${{ github.repository }}
+  cancel-in-progress: false
+
 jobs:
   release:
     runs-on: ubuntu-latest
+    env:
+      RELEASE_BRANCH: ${{ vars.RELEASE_BRANCH || 'main' }}
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
+          ref: ${{ env.RELEASE_BRANCH }}
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: Generate release notes from commits
+      - name: Sync with origin branch
         run: |
-          VERSION="${GITHUB_REF#refs/tags/v}"
-          npx standard-version@latest --release-as "$VERSION" --skip.bump --skip.commit --skip.tag
-          node .github/extract-release-notes.js > release-notes.md
+          git fetch origin "${RELEASE_BRANCH}"
+          git reset --hard "origin/${RELEASE_BRANCH}"
 
-      - name: Create Release
-        uses: softprops/action-gh-release@v2
+      - name: Use Node
+        uses: actions/setup-node@v6
         with:
-          body_path: release-notes.md
-          draft: false
+          node-version: "22.x"
+          cache: "npm"
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Ensure jq is installed
+        run: sudo apt-get update && sudo apt-get install -y jq
+
+      - name: Configure git user
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Validate package version
+        run: |
+          CURRENT_VERSION="$(jq -r '.version // empty' package.json)"
+          if [ -z "$CURRENT_VERSION" ] || [ "$CURRENT_VERSION" = "null" ]; then
+            echo "Invalid version in package.json: $CURRENT_VERSION"
+            exit 1
+          fi
+          if ! [[ "$CURRENT_VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+([.-].+)?$ ]]; then
+            echo "Version is not semver-like: $CURRENT_VERSION"
+            exit 1
+          fi
+
+      - name: Run standard-version
+        run: |
+          STANDARD_VERSION_ARGS="--no-verify --skip.commit --skip.tag --infile CHANGELOG.md --packageFiles package.json --bumpFiles package.json"
+          if [ "${{ inputs.bump }}" = "auto" ]; then
+            npx standard-version $STANDARD_VERSION_ARGS
+          else
+            npx standard-version -r "${{ inputs.bump }}" $STANDARD_VERSION_ARGS
+          fi
+
+      - name: Capture new version
+        run: echo "NEW_VERSION=$(jq -r .version package.json)" >> "$GITHUB_ENV"
+
+      - name: Sync version files
+        run: |
+          chmod +x scripts/sync-version-files.js
+          ./scripts/sync-version-files.js "$NEW_VERSION"
+
+      - name: Commit and tag release
+        run: |
+          for file in CHANGELOG.md package.json package-lock.json composer.json Config/config.php; do
+            [ -f "$file" ] && git add "$file"
+          done
+          git commit -m "chore(release): v${NEW_VERSION}"
+          git tag "v${NEW_VERSION}"
+
+      - name: Extract release notes
+        run: |
+          chmod +x scripts/extract-release-notes.sh
+          ./scripts/extract-release-notes.sh CHANGELOG.md > release_notes.md
+
+      - name: Get release tag
+        id: tag
+        run: echo "name=v${NEW_VERSION}" >> "$GITHUB_OUTPUT"
+
+      - name: Push commit and tag
+        run: git push --follow-tags origin "HEAD:${RELEASE_BRANCH}"
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v3
+        with:
+          tag_name: ${{ steps.tag.outputs.name }}
+          name: ${{ steps.tag.outputs.name }}
+          body_path: release_notes.md
+          generate_release_notes: false
+          prerelease: ${{ contains(env.NEW_VERSION, '-') }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Post release to Google Sheets
+        env:
+          SHEETS_WEBHOOK_URL: ${{ vars.SHEETS_WEBHOOK_URL }}
+          SHEETS_WEBHOOK_TOKEN: ${{ secrets.SHEETS_WEBHOOK_TOKEN }}
+          TAG_NAME: ${{ steps.tag.outputs.name }}
+          GITHUB_SERVER_URL: ${{ github.server_url }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+        run: |
+          chmod +x scripts/post-release-to-google-sheets.sh
+          ./scripts/post-release-to-google-sheets.sh release_notes.md
+
+      - name: Post release notes to Slack
+        if: inputs.post_to_slack
+        continue-on-error: true
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          CHANGELOG_URL: ${{ vars.CHANGELOG_SHEET_URL }}
+        run: |
+          chmod +x scripts/post-release-notes-to-slack.sh
+          ./scripts/post-release-notes-to-slack.sh release_notes.md

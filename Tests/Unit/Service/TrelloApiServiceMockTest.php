@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace MauticPlugin\MauticTrelloBundle\Tests\Unit\Service;
+namespace MauticPlugin\AivieTrelloBundle\Tests\Unit\Service;
 
 use Mautic\CoreBundle\Helper\CoreParametersHelper;
-use MauticPlugin\MauticTrelloBundle\Integration\Config;
-use MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Card;
-use MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\TrelloList;
-use MauticPlugin\MauticTrelloBundle\Service\TrelloApiService;
-use MauticPlugin\MauticTrelloBundle\Tests\Mock\DefaultApiMock;
+use MauticPlugin\AivieTrelloBundle\Integration\Config;
+use MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Card;
+use MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\TrelloList;
+use MauticPlugin\AivieTrelloBundle\Service\TrelloApiService;
+use MauticPlugin\AivieTrelloBundle\Tests\Mock\DefaultApiMock;
 use Monolog\Logger;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Test the Mautic Trello API Services.
+ * Test the Aivie Trello API Services.
  */
 class TrelloApiServiceMockTest extends TestCase
 {

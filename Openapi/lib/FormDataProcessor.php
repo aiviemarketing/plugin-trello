@@ -2,7 +2,7 @@
 
 
 /**
- * Mautic Trello API.
+ * Aivie Trello API.
  *
  * Create or update a card via the Trello API
  *
@@ -17,11 +17,11 @@
  * Do not edit the class manually.
  */
 
-namespace MauticPlugin\MauticTrelloBundle\Openapi\lib;
+namespace MauticPlugin\AivieTrelloBundle\Openapi\lib;
 
 use DateTime;
 use GuzzleHttp\Psr7\Utils;
-use MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\ModelInterface;
+use MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\ModelInterface;
 use Psr\Http\Message\StreamInterface;
 use SplFileObject;
 

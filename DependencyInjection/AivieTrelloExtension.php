@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace MauticPlugin\MauticTrelloBundle\DependencyInjection;
+namespace MauticPlugin\AivieTrelloBundle\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
 
-class MauticTrelloExtension extends Extension
+class AivieTrelloExtension extends Extension
 {
     public function load(array $configs, ContainerBuilder $container): void
     {

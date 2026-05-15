@@ -1,11 +1,12 @@
 <?php
 
 declare(strict_types=1);
-use MauticPlugin\MauticTrelloBundle\Integration\Support\ConfigSupport;
-use MauticPlugin\MauticTrelloBundle\Integration\TrelloIntegration;
+
+use MauticPlugin\AivieTrelloBundle\Integration\Support\ConfigSupport;
+use MauticPlugin\AivieTrelloBundle\Integration\AivieTrelloIntegration;
 
 return [
-    'name'        => 'Mautic Trello',
+    'name'        => 'Aivie Trello',
     'description' => 'Create Trello cards from Mautic contacts',
     'version'     => '2.0.0',
     'author'      => 'Aivie',
@@ -13,12 +14,12 @@ return [
         'main' => [
             'plugin_create_cards_show_new' => [
                 'path'       => '/trello/card/show-new/{contactId}',
-                'controller' => 'MauticPlugin\MauticTrelloBundle\Controller\CardController::showNewCardAction',
+                'controller' => 'MauticPlugin\AivieTrelloBundle\Controller\CardController::showNewCardAction',
             ],
             'plugin_trello_card_add' => [
                 'path'        => '/trello/card',
                 'method'      => 'POST',
-                'controller'  => 'MauticPlugin\MauticTrelloBundle\Controller\CardController::addAction',
+                'controller'  => 'MauticPlugin\AivieTrelloBundle\Controller\CardController::addAction',
                 'returnRoute' => '',
             ],
         ],
@@ -26,7 +27,7 @@ return [
             'plugin_trello_card_add_checklist_item_to_card' => [
                 'path'        => '/trello/card/checklist/item',
                 'method'      => 'POST',
-                'controller'  => 'MauticPlugin\MauticTrelloBundle\Controller\Api\CardApiController::addChecklistItemToCardAction',
+                'controller'  => 'MauticPlugin\AivieTrelloBundle\Controller\Api\CardApiController::addChecklistItemToCardAction',
                 'returnRoute' => '',
             ],
         ],
@@ -37,8 +38,8 @@ return [
     'services' => [
         'integrations' => [
             // Basic definitions with name, display name and icon
-            'mautic.integration.trello'               => [
-                'class' => TrelloIntegration::class,
+            'mautic.integration.aivietrello'               => [
+                'class' => AivieTrelloIntegration::class,
                 'tags'  => [
                     'mautic.integration',
                     'mautic.basic_integration',

@@ -2,7 +2,7 @@
 
 
 /**
- * Mautic Trello API.
+ * Aivie Trello API.
  *
  * Create or update a card via the Trello API
  *
@@ -17,7 +17,7 @@
  * Do not edit the class manually.
  */
 
-namespace MauticPlugin\MauticTrelloBundle\Openapi\lib\Api;
+namespace MauticPlugin\AivieTrelloBundle\Openapi\lib\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -26,10 +26,10 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
-use MauticPlugin\MauticTrelloBundle\Openapi\lib\ApiException;
-use MauticPlugin\MauticTrelloBundle\Openapi\lib\Configuration;
-use MauticPlugin\MauticTrelloBundle\Openapi\lib\HeaderSelector;
-use MauticPlugin\MauticTrelloBundle\Openapi\lib\ObjectSerializer;
+use MauticPlugin\AivieTrelloBundle\Openapi\lib\ApiException;
+use MauticPlugin\AivieTrelloBundle\Openapi\lib\Configuration;
+use MauticPlugin\AivieTrelloBundle\Openapi\lib\HeaderSelector;
+use MauticPlugin\AivieTrelloBundle\Openapi\lib\ObjectSerializer;
 
 /**
  * DefaultApi Class Doc Comment.
@@ -103,9 +103,9 @@ class DefaultApi
      * @param int $hostIndex (Optional) host index to select the list of hosts if defined in the OpenAPI spec
      */
     public function __construct(
-        ClientInterface $client = null,
-        Configuration $config = null,
-        HeaderSelector $selector = null,
+        ?ClientInterface $client = null,
+        ?Configuration $config = null,
+        ?HeaderSelector $selector = null,
         $hostIndex = 0,
     ) {
         $this->client         = $client ?: new Client();
@@ -145,10 +145,10 @@ class DefaultApi
     /**
      * Operation addCard.
      *
-     * @param \MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\NewCard $newCard     Card to be added (required)
+     * @param \MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\NewCard $newCard     Card to be added (required)
      * @param string                                                     $contentType The value for the Content-Type header. Check self::contentTypes['addCard'] to see the possible values for this operation
      *
-     * @return \MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Card|\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\CardError|\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\CardError
+     * @return \MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Card|\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\CardError|\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\CardError
      *
      * @throws ApiException              on non-2xx response
      * @throws \InvalidArgumentException
@@ -163,10 +163,10 @@ class DefaultApi
     /**
      * Operation addCardWithHttpInfo.
      *
-     * @param \MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\NewCard $newCard     Card to be added (required)
+     * @param \MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\NewCard $newCard     Card to be added (required)
      * @param string                                                     $contentType The value for the Content-Type header. Check self::contentTypes['addCard'] to see the possible values for this operation
      *
-     * @return array of \MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Card|\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\CardError|\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\CardError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Card|\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\CardError|\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\CardError, HTTP status code, HTTP response headers (array of strings)
      *
      * @throws ApiException              on non-2xx response
      * @throws \InvalidArgumentException
@@ -193,53 +193,53 @@ class DefaultApi
 
             switch ($statusCode) {
                 case 200:
-                    if ('\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Card' === '\SplFileObject') {
+                    if ('\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Card' === '\SplFileObject') {
                         $content = $response->getBody(); // stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Card' !== 'string') {
+                        if ('\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Card' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Card', []),
+                        ObjectSerializer::deserialize($content, '\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Card', []),
                         $response->getStatusCode(),
                         $response->getHeaders(),
                     ];
                 case 400:
-                    if ('\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\CardError' === '\SplFileObject') {
+                    if ('\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\CardError' === '\SplFileObject') {
                         $content = $response->getBody(); // stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\CardError' !== 'string') {
+                        if ('\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\CardError' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\CardError', []),
+                        ObjectSerializer::deserialize($content, '\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\CardError', []),
                         $response->getStatusCode(),
                         $response->getHeaders(),
                     ];
                 case 404:
-                    if ('\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\CardError' === '\SplFileObject') {
+                    if ('\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\CardError' === '\SplFileObject') {
                         $content = $response->getBody(); // stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\CardError' !== 'string') {
+                        if ('\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\CardError' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\CardError', []),
+                        ObjectSerializer::deserialize($content, '\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\CardError', []),
                         $response->getStatusCode(),
                         $response->getHeaders(),
                     ];
             }
 
-            $returnType = '\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Card';
+            $returnType = '\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Card';
             if ('\SplFileObject' === $returnType) {
                 $content = $response->getBody(); // stream goes to serializer
             } else {
@@ -259,7 +259,7 @@ class DefaultApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Card',
+                        '\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Card',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -267,7 +267,7 @@ class DefaultApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\CardError',
+                        '\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\CardError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -275,7 +275,7 @@ class DefaultApi
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\CardError',
+                        '\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\CardError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -288,7 +288,7 @@ class DefaultApi
     /**
      * Operation addCardAsync.
      *
-     * @param \MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\NewCard $newCard     Card to be added (required)
+     * @param \MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\NewCard $newCard     Card to be added (required)
      * @param string                                                     $contentType The value for the Content-Type header. Check self::contentTypes['addCard'] to see the possible values for this operation
      *
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -308,7 +308,7 @@ class DefaultApi
     /**
      * Operation addCardAsyncWithHttpInfo.
      *
-     * @param \MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\NewCard $newCard     Card to be added (required)
+     * @param \MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\NewCard $newCard     Card to be added (required)
      * @param string                                                     $contentType The value for the Content-Type header. Check self::contentTypes['addCard'] to see the possible values for this operation
      *
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -317,7 +317,7 @@ class DefaultApi
      */
     public function addCardAsyncWithHttpInfo($newCard, string $contentType = self::contentTypes['addCard'][0])
     {
-        $returnType = '\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Card';
+        $returnType = '\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Card';
         $request    = $this->addCardRequest($newCard, $contentType);
 
         return $this->client
@@ -350,7 +350,7 @@ class DefaultApi
     /**
      * Create request for operation 'addCard'.
      *
-     * @param \MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\NewCard $newCard     Card to be added (required)
+     * @param \MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\NewCard $newCard     Card to be added (required)
      * @param string                                                     $contentType The value for the Content-Type header. Check self::contentTypes['addCard'] to see the possible values for this operation
      *
      * @return Request
@@ -936,7 +936,7 @@ class DefaultApi
      * @param string $filter      Use &#x60;cover&#x60; to restrict to just the cover attachment (optional, default to 'false')
      * @param string $contentType The value for the Content-Type header. Check self::contentTypes['getAttachmentsOnCard'] to see the possible values for this operation
      *
-     * @return \MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Attachment[]
+     * @return \MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Attachment[]
      *
      * @throws ApiException              on non-2xx response
      * @throws \InvalidArgumentException
@@ -958,7 +958,7 @@ class DefaultApi
      * @param string $filter      Use &#x60;cover&#x60; to restrict to just the cover attachment (optional, default to 'false')
      * @param string $contentType The value for the Content-Type header. Check self::contentTypes['getAttachmentsOnCard'] to see the possible values for this operation
      *
-     * @return array of \MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Attachment[], HTTP status code, HTTP response headers (array of strings)
+     * @return array of \MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Attachment[], HTTP status code, HTTP response headers (array of strings)
      *
      * @throws ApiException              on non-2xx response
      * @throws \InvalidArgumentException
@@ -985,23 +985,23 @@ class DefaultApi
 
             switch ($statusCode) {
                 case 200:
-                    if ('\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Attachment[]' === '\SplFileObject') {
+                    if ('\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Attachment[]' === '\SplFileObject') {
                         $content = $response->getBody(); // stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Attachment[]' !== 'string') {
+                        if ('\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Attachment[]' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Attachment[]', []),
+                        ObjectSerializer::deserialize($content, '\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Attachment[]', []),
                         $response->getStatusCode(),
                         $response->getHeaders(),
                     ];
             }
 
-            $returnType = '\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Attachment[]';
+            $returnType = '\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Attachment[]';
             if ('\SplFileObject' === $returnType) {
                 $content = $response->getBody(); // stream goes to serializer
             } else {
@@ -1021,7 +1021,7 @@ class DefaultApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Attachment[]',
+                        '\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Attachment[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1071,7 +1071,7 @@ class DefaultApi
      */
     public function getAttachmentsOnCardAsyncWithHttpInfo($id, $fields = 'all', $filter = 'false', string $contentType = self::contentTypes['getAttachmentsOnCard'][0])
     {
-        $returnType = '\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Attachment[]';
+        $returnType = '\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Attachment[]';
         $request    = $this->getAttachmentsOnCardRequest($id, $fields, $filter, $contentType);
 
         return $this->client
@@ -1227,7 +1227,7 @@ class DefaultApi
      * @param string $fields      &#x60;all&#x60; or a comma-separated list of member fields (e.g. id, fullName, username, email) (optional, default to 'id,fullName,username')
      * @param string $contentType The value for the Content-Type header. Check self::contentTypes['getBoardMembers'] to see the possible values for this operation
      *
-     * @return \MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Member[]
+     * @return \MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Member[]
      *
      * @throws ApiException              on non-2xx response
      * @throws \InvalidArgumentException
@@ -1248,7 +1248,7 @@ class DefaultApi
      * @param string $fields      &#x60;all&#x60; or a comma-separated list of member fields (e.g. id, fullName, username, email) (optional, default to 'id,fullName,username')
      * @param string $contentType The value for the Content-Type header. Check self::contentTypes['getBoardMembers'] to see the possible values for this operation
      *
-     * @return array of \MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Member[], HTTP status code, HTTP response headers (array of strings)
+     * @return array of \MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Member[], HTTP status code, HTTP response headers (array of strings)
      *
      * @throws ApiException              on non-2xx response
      * @throws \InvalidArgumentException
@@ -1275,23 +1275,23 @@ class DefaultApi
 
             switch ($statusCode) {
                 case 200:
-                    if ('\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Member[]' === '\SplFileObject') {
+                    if ('\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Member[]' === '\SplFileObject') {
                         $content = $response->getBody(); // stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Member[]' !== 'string') {
+                        if ('\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Member[]' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Member[]', []),
+                        ObjectSerializer::deserialize($content, '\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Member[]', []),
                         $response->getStatusCode(),
                         $response->getHeaders(),
                     ];
             }
 
-            $returnType = '\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Member[]';
+            $returnType = '\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Member[]';
             if ('\SplFileObject' === $returnType) {
                 $content = $response->getBody(); // stream goes to serializer
             } else {
@@ -1311,7 +1311,7 @@ class DefaultApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Member[]',
+                        '\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Member[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1359,7 +1359,7 @@ class DefaultApi
      */
     public function getBoardMembersAsyncWithHttpInfo($id, $fields = 'id,fullName,username', string $contentType = self::contentTypes['getBoardMembers'][0])
     {
-        $returnType = '\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Member[]';
+        $returnType = '\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Member[]';
         $request    = $this->getBoardMembersRequest($id, $fields, $contentType);
 
         return $this->client
@@ -1503,7 +1503,7 @@ class DefaultApi
      * @param string $filter      filter (optional)
      * @param string $contentType The value for the Content-Type header. Check self::contentTypes['getBoards'] to see the possible values for this operation
      *
-     * @return \MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\TrelloBoard[]
+     * @return \MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\TrelloBoard[]
      *
      * @throws ApiException              on non-2xx response
      * @throws \InvalidArgumentException
@@ -1522,7 +1522,7 @@ class DefaultApi
      * @param string $filter      (optional)
      * @param string $contentType The value for the Content-Type header. Check self::contentTypes['getBoards'] to see the possible values for this operation
      *
-     * @return array of \MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\TrelloBoard[], HTTP status code, HTTP response headers (array of strings)
+     * @return array of \MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\TrelloBoard[], HTTP status code, HTTP response headers (array of strings)
      *
      * @throws ApiException              on non-2xx response
      * @throws \InvalidArgumentException
@@ -1549,23 +1549,23 @@ class DefaultApi
 
             switch ($statusCode) {
                 case 200:
-                    if ('\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\TrelloBoard[]' === '\SplFileObject') {
+                    if ('\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\TrelloBoard[]' === '\SplFileObject') {
                         $content = $response->getBody(); // stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\TrelloBoard[]' !== 'string') {
+                        if ('\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\TrelloBoard[]' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\TrelloBoard[]', []),
+                        ObjectSerializer::deserialize($content, '\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\TrelloBoard[]', []),
                         $response->getStatusCode(),
                         $response->getHeaders(),
                     ];
             }
 
-            $returnType = '\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\TrelloBoard[]';
+            $returnType = '\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\TrelloBoard[]';
             if ('\SplFileObject' === $returnType) {
                 $content = $response->getBody(); // stream goes to serializer
             } else {
@@ -1585,7 +1585,7 @@ class DefaultApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\TrelloBoard[]',
+                        '\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\TrelloBoard[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1629,7 +1629,7 @@ class DefaultApi
      */
     public function getBoardsAsyncWithHttpInfo($fields = null, $filter = null, string $contentType = self::contentTypes['getBoards'][0])
     {
-        $returnType = '\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\TrelloBoard[]';
+        $returnType = '\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\TrelloBoard[]';
         $request    = $this->getBoardsRequest($fields, $filter, $contentType);
 
         return $this->client
@@ -1770,7 +1770,7 @@ class DefaultApi
      * @param string $fields      &#x60;all&#x60; or a comma-separated list of card fields (optional, default to 'id,name,idChecklists,shortUrl,due,idMembers,url')
      * @param string $contentType The value for the Content-Type header. Check self::contentTypes['getCard'] to see the possible values for this operation
      *
-     * @return \MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Card|\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\CardError|\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\CardError
+     * @return \MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Card|\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\CardError|\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\CardError
      *
      * @throws ApiException              on non-2xx response
      * @throws \InvalidArgumentException
@@ -1791,7 +1791,7 @@ class DefaultApi
      * @param string $fields      &#x60;all&#x60; or a comma-separated list of card fields (optional, default to 'id,name,idChecklists,shortUrl,due,idMembers,url')
      * @param string $contentType The value for the Content-Type header. Check self::contentTypes['getCard'] to see the possible values for this operation
      *
-     * @return array of \MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Card|\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\CardError|\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\CardError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Card|\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\CardError|\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\CardError, HTTP status code, HTTP response headers (array of strings)
      *
      * @throws ApiException              on non-2xx response
      * @throws \InvalidArgumentException
@@ -1818,53 +1818,53 @@ class DefaultApi
 
             switch ($statusCode) {
                 case 200:
-                    if ('\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Card' === '\SplFileObject') {
+                    if ('\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Card' === '\SplFileObject') {
                         $content = $response->getBody(); // stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Card' !== 'string') {
+                        if ('\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Card' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Card', []),
+                        ObjectSerializer::deserialize($content, '\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Card', []),
                         $response->getStatusCode(),
                         $response->getHeaders(),
                     ];
                 case 400:
-                    if ('\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\CardError' === '\SplFileObject') {
+                    if ('\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\CardError' === '\SplFileObject') {
                         $content = $response->getBody(); // stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\CardError' !== 'string') {
+                        if ('\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\CardError' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\CardError', []),
+                        ObjectSerializer::deserialize($content, '\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\CardError', []),
                         $response->getStatusCode(),
                         $response->getHeaders(),
                     ];
                 case 404:
-                    if ('\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\CardError' === '\SplFileObject') {
+                    if ('\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\CardError' === '\SplFileObject') {
                         $content = $response->getBody(); // stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\CardError' !== 'string') {
+                        if ('\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\CardError' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\CardError', []),
+                        ObjectSerializer::deserialize($content, '\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\CardError', []),
                         $response->getStatusCode(),
                         $response->getHeaders(),
                     ];
             }
 
-            $returnType = '\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Card';
+            $returnType = '\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Card';
             if ('\SplFileObject' === $returnType) {
                 $content = $response->getBody(); // stream goes to serializer
             } else {
@@ -1884,7 +1884,7 @@ class DefaultApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Card',
+                        '\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Card',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1892,7 +1892,7 @@ class DefaultApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\CardError',
+                        '\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\CardError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1900,7 +1900,7 @@ class DefaultApi
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\CardError',
+                        '\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\CardError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1948,7 +1948,7 @@ class DefaultApi
      */
     public function getCardAsyncWithHttpInfo($id, $fields = 'id,name,idChecklists,shortUrl,due,idMembers,url', string $contentType = self::contentTypes['getCard'][0])
     {
-        $returnType = '\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Card';
+        $returnType = '\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Card';
         $request    = $this->getCardRequest($id, $fields, $contentType);
 
         return $this->client
@@ -2096,7 +2096,7 @@ class DefaultApi
      * @param string $attachmentFields &#x60;all&#x60; or a comma-separated list of attachment fields to return (e.g. url, name, id). (optional, default to 'url')
      * @param string $contentType      The value for the Content-Type header. Check self::contentTypes['getCardsOnBoard'] to see the possible values for this operation
      *
-     * @return \MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Card[]
+     * @return \MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Card[]
      *
      * @throws ApiException              on non-2xx response
      * @throws \InvalidArgumentException
@@ -2119,7 +2119,7 @@ class DefaultApi
      * @param string $attachmentFields &#x60;all&#x60; or a comma-separated list of attachment fields to return (e.g. url, name, id). (optional, default to 'url')
      * @param string $contentType      The value for the Content-Type header. Check self::contentTypes['getCardsOnBoard'] to see the possible values for this operation
      *
-     * @return array of \MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Card[], HTTP status code, HTTP response headers (array of strings)
+     * @return array of \MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Card[], HTTP status code, HTTP response headers (array of strings)
      *
      * @throws ApiException              on non-2xx response
      * @throws \InvalidArgumentException
@@ -2146,23 +2146,23 @@ class DefaultApi
 
             switch ($statusCode) {
                 case 200:
-                    if ('\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Card[]' === '\SplFileObject') {
+                    if ('\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Card[]' === '\SplFileObject') {
                         $content = $response->getBody(); // stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Card[]' !== 'string') {
+                        if ('\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Card[]' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Card[]', []),
+                        ObjectSerializer::deserialize($content, '\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Card[]', []),
                         $response->getStatusCode(),
                         $response->getHeaders(),
                     ];
             }
 
-            $returnType = '\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Card[]';
+            $returnType = '\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Card[]';
             if ('\SplFileObject' === $returnType) {
                 $content = $response->getBody(); // stream goes to serializer
             } else {
@@ -2182,7 +2182,7 @@ class DefaultApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Card[]',
+                        '\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Card[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2234,7 +2234,7 @@ class DefaultApi
      */
     public function getCardsOnBoardAsyncWithHttpInfo($id, $fields = 'id,name,idChecklists,shortUrl,due,idMembers,url,attachments,dateLastActivity', $attachments = 'true', $attachmentFields = 'url', string $contentType = self::contentTypes['getCardsOnBoard'][0])
     {
-        $returnType = '\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Card[]';
+        $returnType = '\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Card[]';
         $request    = $this->getCardsOnBoardRequest($id, $fields, $attachments, $attachmentFields, $contentType);
 
         return $this->client
@@ -2400,7 +2400,7 @@ class DefaultApi
      * @param string $fields      fields (optional)
      * @param string $contentType The value for the Content-Type header. Check self::contentTypes['getLists'] to see the possible values for this operation
      *
-     * @return \MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\TrelloList[]
+     * @return \MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\TrelloList[]
      *
      * @throws ApiException              on non-2xx response
      * @throws \InvalidArgumentException
@@ -2421,7 +2421,7 @@ class DefaultApi
      * @param string $fields      (optional)
      * @param string $contentType The value for the Content-Type header. Check self::contentTypes['getLists'] to see the possible values for this operation
      *
-     * @return array of \MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\TrelloList[], HTTP status code, HTTP response headers (array of strings)
+     * @return array of \MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\TrelloList[], HTTP status code, HTTP response headers (array of strings)
      *
      * @throws ApiException              on non-2xx response
      * @throws \InvalidArgumentException
@@ -2448,23 +2448,23 @@ class DefaultApi
 
             switch ($statusCode) {
                 case 200:
-                    if ('\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\TrelloList[]' === '\SplFileObject') {
+                    if ('\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\TrelloList[]' === '\SplFileObject') {
                         $content = $response->getBody(); // stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\TrelloList[]' !== 'string') {
+                        if ('\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\TrelloList[]' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\TrelloList[]', []),
+                        ObjectSerializer::deserialize($content, '\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\TrelloList[]', []),
                         $response->getStatusCode(),
                         $response->getHeaders(),
                     ];
             }
 
-            $returnType = '\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\TrelloList[]';
+            $returnType = '\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\TrelloList[]';
             if ('\SplFileObject' === $returnType) {
                 $content = $response->getBody(); // stream goes to serializer
             } else {
@@ -2484,7 +2484,7 @@ class DefaultApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\TrelloList[]',
+                        '\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\TrelloList[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2532,7 +2532,7 @@ class DefaultApi
      */
     public function getListsAsyncWithHttpInfo($boardId, $cards = null, $filter = null, $fields = null, string $contentType = self::contentTypes['getLists'][0])
     {
-        $returnType = '\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\TrelloList[]';
+        $returnType = '\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\TrelloList[]';
         $request    = $this->getListsRequest($boardId, $cards, $filter, $fields, $contentType);
 
         return $this->client
@@ -2698,7 +2698,7 @@ class DefaultApi
      * @param string $fields      &#x60;all&#x60; or a comma-separated list of member fields (e.g. id, fullName, email) (optional, default to 'id,fullName,email')
      * @param string $contentType The value for the Content-Type header. Check self::contentTypes['getMember'] to see the possible values for this operation
      *
-     * @return \MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Member
+     * @return \MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Member
      *
      * @throws ApiException              on non-2xx response
      * @throws \InvalidArgumentException
@@ -2719,7 +2719,7 @@ class DefaultApi
      * @param string $fields      &#x60;all&#x60; or a comma-separated list of member fields (e.g. id, fullName, email) (optional, default to 'id,fullName,email')
      * @param string $contentType The value for the Content-Type header. Check self::contentTypes['getMember'] to see the possible values for this operation
      *
-     * @return array of \MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Member, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Member, HTTP status code, HTTP response headers (array of strings)
      *
      * @throws ApiException              on non-2xx response
      * @throws \InvalidArgumentException
@@ -2746,23 +2746,23 @@ class DefaultApi
 
             switch ($statusCode) {
                 case 200:
-                    if ('\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Member' === '\SplFileObject') {
+                    if ('\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Member' === '\SplFileObject') {
                         $content = $response->getBody(); // stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Member' !== 'string') {
+                        if ('\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Member' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Member', []),
+                        ObjectSerializer::deserialize($content, '\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Member', []),
                         $response->getStatusCode(),
                         $response->getHeaders(),
                     ];
             }
 
-            $returnType = '\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Member';
+            $returnType = '\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Member';
             if ('\SplFileObject' === $returnType) {
                 $content = $response->getBody(); // stream goes to serializer
             } else {
@@ -2782,7 +2782,7 @@ class DefaultApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Member',
+                        '\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Member',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2830,7 +2830,7 @@ class DefaultApi
      */
     public function getMemberAsyncWithHttpInfo($id, $fields = 'id,fullName,email', string $contentType = self::contentTypes['getMember'][0])
     {
-        $returnType = '\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Member';
+        $returnType = '\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Member';
         $request    = $this->getMemberRequest($id, $fields, $contentType);
 
         return $this->client
@@ -2988,7 +2988,7 @@ class DefaultApi
      * @param string                 $idAttachmentCover The ID of the image attachment the card should use as its cover, or null for none (optional)
      * @param string                 $contentType       The value for the Content-Type header. Check self::contentTypes['updateCard'] to see the possible values for this operation
      *
-     * @return \MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Card|\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\CardError|\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\CardError
+     * @return \MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Card|\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\CardError|\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\CardError
      *
      * @throws ApiException              on non-2xx response
      * @throws \InvalidArgumentException
@@ -3021,7 +3021,7 @@ class DefaultApi
      * @param string                 $idAttachmentCover The ID of the image attachment the card should use as its cover, or null for none (optional)
      * @param string                 $contentType       The value for the Content-Type header. Check self::contentTypes['updateCard'] to see the possible values for this operation
      *
-     * @return array of \MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Card|\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\CardError|\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\CardError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Card|\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\CardError|\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\CardError, HTTP status code, HTTP response headers (array of strings)
      *
      * @throws ApiException              on non-2xx response
      * @throws \InvalidArgumentException
@@ -3048,53 +3048,53 @@ class DefaultApi
 
             switch ($statusCode) {
                 case 200:
-                    if ('\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Card' === '\SplFileObject') {
+                    if ('\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Card' === '\SplFileObject') {
                         $content = $response->getBody(); // stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Card' !== 'string') {
+                        if ('\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Card' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Card', []),
+                        ObjectSerializer::deserialize($content, '\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Card', []),
                         $response->getStatusCode(),
                         $response->getHeaders(),
                     ];
                 case 400:
-                    if ('\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\CardError' === '\SplFileObject') {
+                    if ('\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\CardError' === '\SplFileObject') {
                         $content = $response->getBody(); // stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\CardError' !== 'string') {
+                        if ('\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\CardError' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\CardError', []),
+                        ObjectSerializer::deserialize($content, '\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\CardError', []),
                         $response->getStatusCode(),
                         $response->getHeaders(),
                     ];
                 case 404:
-                    if ('\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\CardError' === '\SplFileObject') {
+                    if ('\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\CardError' === '\SplFileObject') {
                         $content = $response->getBody(); // stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\CardError' !== 'string') {
+                        if ('\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\CardError' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\CardError', []),
+                        ObjectSerializer::deserialize($content, '\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\CardError', []),
                         $response->getStatusCode(),
                         $response->getHeaders(),
                     ];
             }
 
-            $returnType = '\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Card';
+            $returnType = '\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Card';
             if ('\SplFileObject' === $returnType) {
                 $content = $response->getBody(); // stream goes to serializer
             } else {
@@ -3114,7 +3114,7 @@ class DefaultApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Card',
+                        '\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Card',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3122,7 +3122,7 @@ class DefaultApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\CardError',
+                        '\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\CardError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3130,7 +3130,7 @@ class DefaultApi
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\CardError',
+                        '\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\CardError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3202,7 +3202,7 @@ class DefaultApi
      */
     public function updateCardAsyncWithHttpInfo($id, $name = null, $desc = null, $closed = null, $idList = null, $idBoard = null, $pos = null, $due = null, $start = null, $dueComplete = null, $subscribed = null, $idMembers = null, $idLabels = null, $idAttachmentCover = null, string $contentType = self::contentTypes['updateCard'][0])
     {
-        $returnType = '\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Card';
+        $returnType = '\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Card';
         $request    = $this->updateCardRequest($id, $name, $desc, $closed, $idList, $idBoard, $pos, $due, $start, $dueComplete, $subscribed, $idMembers, $idLabels, $idAttachmentCover, $contentType);
 
         return $this->client

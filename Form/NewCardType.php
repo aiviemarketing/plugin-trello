@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace MauticPlugin\MauticTrelloBundle\Form;
+namespace MauticPlugin\AivieTrelloBundle\Form;
 
 use Mautic\CoreBundle\Form\Type\FormButtonsType;
-use MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\NewCard;
-use MauticPlugin\MauticTrelloBundle\Service\TrelloApiService;
+use MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\NewCard;
+use MauticPlugin\AivieTrelloBundle\Service\TrelloApiService;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;

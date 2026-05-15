@@ -2,22 +2,22 @@
 
 declare(strict_types=1);
 
-namespace MauticPlugin\MauticTrelloBundle\Service;
+namespace MauticPlugin\AivieTrelloBundle\Service;
 
 use GuzzleHttp\Client as HttpClient;
 use Mautic\CoreBundle\Helper\CoreParametersHelper;
 use Mautic\UserBundle\Entity\User;
-use MauticPlugin\MauticTrelloBundle\Integration\Config;
-use MauticPlugin\MauticTrelloBundle\Openapi\lib\Api\DefaultApi;
-use MauticPlugin\MauticTrelloBundle\Openapi\lib\ApiException;
-use MauticPlugin\MauticTrelloBundle\Openapi\lib\Configuration;
-use MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Card;
-use MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\CardError;
-use MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Member;
+use MauticPlugin\AivieTrelloBundle\Integration\Config;
+use MauticPlugin\AivieTrelloBundle\Openapi\lib\Api\DefaultApi;
+use MauticPlugin\AivieTrelloBundle\Openapi\lib\ApiException;
+use MauticPlugin\AivieTrelloBundle\Openapi\lib\Configuration;
+use MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Card;
+use MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\CardError;
+use MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Member;
 use Psr\Log\LoggerInterface;
 
 /**
- * Provide the auto generated Trello API to the MauticTrelloBundle.
+ * Provide the auto generated Trello API to the AivieTrelloBundle.
  */
 class TrelloApiService
 {
@@ -84,7 +84,7 @@ class TrelloApiService
      *
      * @param int|null $boardId Trello Board id
      */
-    public function getListsOnBoard(int $boardId = null): array
+    public function getListsOnBoard(?int $boardId = null): array
     {
         $api = $this->getApi();
         if (!$api) {

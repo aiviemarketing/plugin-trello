@@ -1,4 +1,4 @@
-# MauticPlugin\MauticTrelloBundle\Openapi\lib\DefaultApi
+# MauticPlugin\AivieTrelloBundle\Openapi\lib\DefaultApi
 
 
 
@@ -22,7 +22,7 @@ All URIs are relative to https://api.trello.com/1, except if the operation defin
 ## `addCard()`
 
 ```php
-addCard($newCard): \MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Card
+addCard($newCard): \MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Card
 ```
 
 
@@ -37,23 +37,23 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: apiToken
-$config = MauticPlugin\MauticTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+$config = MauticPlugin\AivieTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = MauticPlugin\MauticTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+// $config = MauticPlugin\AivieTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
 
 // Configure API key authorization: appKey
-$config = MauticPlugin\MauticTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKey('key', 'YOUR_API_KEY');
+$config = MauticPlugin\AivieTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKey('key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = MauticPlugin\MauticTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKeyPrefix('key', 'Bearer');
+// $config = MauticPlugin\AivieTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKeyPrefix('key', 'Bearer');
 
 
-$apiInstance = new MauticPlugin\MauticTrelloBundle\Openapi\lib\Api\DefaultApi(
+$apiInstance = new MauticPlugin\AivieTrelloBundle\Openapi\lib\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
-$newCard = new \MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\NewCard(); // \MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\NewCard | Card to be added
+$newCard = new \MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\NewCard(); // \MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\NewCard | Card to be added
 
 try {
     $result = $apiInstance->addCard($newCard);
@@ -67,11 +67,11 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **newCard** | [**\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\NewCard**](../Model/NewCard.md)| Card to be added | |
+| **newCard** | [**\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\NewCard**](../Model/NewCard.md)| Card to be added | |
 
 ### Return type
 
-[**\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Card**](../Model/Card.md)
+[**\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Card**](../Model/Card.md)
 
 ### Authorization
 
@@ -104,17 +104,17 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: apiToken
-$config = MauticPlugin\MauticTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+$config = MauticPlugin\AivieTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = MauticPlugin\MauticTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+// $config = MauticPlugin\AivieTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
 
 // Configure API key authorization: appKey
-$config = MauticPlugin\MauticTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKey('key', 'YOUR_API_KEY');
+$config = MauticPlugin\AivieTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKey('key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = MauticPlugin\MauticTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKeyPrefix('key', 'Bearer');
+// $config = MauticPlugin\AivieTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKeyPrefix('key', 'Bearer');
 
 
-$apiInstance = new MauticPlugin\MauticTrelloBundle\Openapi\lib\Api\DefaultApi(
+$apiInstance = new MauticPlugin\AivieTrelloBundle\Openapi\lib\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -172,17 +172,17 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: apiToken
-$config = MauticPlugin\MauticTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+$config = MauticPlugin\AivieTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = MauticPlugin\MauticTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+// $config = MauticPlugin\AivieTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
 
 // Configure API key authorization: appKey
-$config = MauticPlugin\MauticTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKey('key', 'YOUR_API_KEY');
+$config = MauticPlugin\AivieTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKey('key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = MauticPlugin\MauticTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKeyPrefix('key', 'Bearer');
+// $config = MauticPlugin\AivieTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKeyPrefix('key', 'Bearer');
 
 
-$apiInstance = new MauticPlugin\MauticTrelloBundle\Openapi\lib\Api\DefaultApi(
+$apiInstance = new MauticPlugin\AivieTrelloBundle\Openapi\lib\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -229,7 +229,7 @@ void (empty response body)
 ## `getAttachmentsOnCard()`
 
 ```php
-getAttachmentsOnCard($id, $fields, $filter): \MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Attachment[]
+getAttachmentsOnCard($id, $fields, $filter): \MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Attachment[]
 ```
 
 Get Attachments on a Card
@@ -244,17 +244,17 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: apiToken
-$config = MauticPlugin\MauticTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+$config = MauticPlugin\AivieTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = MauticPlugin\MauticTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+// $config = MauticPlugin\AivieTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
 
 // Configure API key authorization: appKey
-$config = MauticPlugin\MauticTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKey('key', 'YOUR_API_KEY');
+$config = MauticPlugin\AivieTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKey('key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = MauticPlugin\MauticTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKeyPrefix('key', 'Bearer');
+// $config = MauticPlugin\AivieTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKeyPrefix('key', 'Bearer');
 
 
-$apiInstance = new MauticPlugin\MauticTrelloBundle\Openapi\lib\Api\DefaultApi(
+$apiInstance = new MauticPlugin\AivieTrelloBundle\Openapi\lib\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -282,7 +282,7 @@ try {
 
 ### Return type
 
-[**\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Attachment[]**](../Model/Attachment.md)
+[**\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Attachment[]**](../Model/Attachment.md)
 
 ### Authorization
 
@@ -300,7 +300,7 @@ try {
 ## `getBoardMembers()`
 
 ```php
-getBoardMembers($id, $fields): \MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Member[]
+getBoardMembers($id, $fields): \MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Member[]
 ```
 
 Get the Members of a Board
@@ -315,17 +315,17 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: apiToken
-$config = MauticPlugin\MauticTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+$config = MauticPlugin\AivieTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = MauticPlugin\MauticTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+// $config = MauticPlugin\AivieTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
 
 // Configure API key authorization: appKey
-$config = MauticPlugin\MauticTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKey('key', 'YOUR_API_KEY');
+$config = MauticPlugin\AivieTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKey('key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = MauticPlugin\MauticTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKeyPrefix('key', 'Bearer');
+// $config = MauticPlugin\AivieTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKeyPrefix('key', 'Bearer');
 
 
-$apiInstance = new MauticPlugin\MauticTrelloBundle\Openapi\lib\Api\DefaultApi(
+$apiInstance = new MauticPlugin\AivieTrelloBundle\Openapi\lib\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -351,7 +351,7 @@ try {
 
 ### Return type
 
-[**\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Member[]**](../Model/Member.md)
+[**\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Member[]**](../Model/Member.md)
 
 ### Authorization
 
@@ -369,7 +369,7 @@ try {
 ## `getBoards()`
 
 ```php
-getBoards($fields, $filter): \MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\TrelloBoard[]
+getBoards($fields, $filter): \MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\TrelloBoard[]
 ```
 
 
@@ -384,17 +384,17 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: apiToken
-$config = MauticPlugin\MauticTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+$config = MauticPlugin\AivieTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = MauticPlugin\MauticTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+// $config = MauticPlugin\AivieTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
 
 // Configure API key authorization: appKey
-$config = MauticPlugin\MauticTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKey('key', 'YOUR_API_KEY');
+$config = MauticPlugin\AivieTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKey('key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = MauticPlugin\MauticTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKeyPrefix('key', 'Bearer');
+// $config = MauticPlugin\AivieTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKeyPrefix('key', 'Bearer');
 
 
-$apiInstance = new MauticPlugin\MauticTrelloBundle\Openapi\lib\Api\DefaultApi(
+$apiInstance = new MauticPlugin\AivieTrelloBundle\Openapi\lib\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -420,7 +420,7 @@ try {
 
 ### Return type
 
-[**\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\TrelloBoard[]**](../Model/TrelloBoard.md)
+[**\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\TrelloBoard[]**](../Model/TrelloBoard.md)
 
 ### Authorization
 
@@ -438,7 +438,7 @@ try {
 ## `getCard()`
 
 ```php
-getCard($id, $fields): \MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Card
+getCard($id, $fields): \MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Card
 ```
 
 Get a Card
@@ -453,17 +453,17 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: apiToken
-$config = MauticPlugin\MauticTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+$config = MauticPlugin\AivieTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = MauticPlugin\MauticTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+// $config = MauticPlugin\AivieTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
 
 // Configure API key authorization: appKey
-$config = MauticPlugin\MauticTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKey('key', 'YOUR_API_KEY');
+$config = MauticPlugin\AivieTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKey('key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = MauticPlugin\MauticTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKeyPrefix('key', 'Bearer');
+// $config = MauticPlugin\AivieTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKeyPrefix('key', 'Bearer');
 
 
-$apiInstance = new MauticPlugin\MauticTrelloBundle\Openapi\lib\Api\DefaultApi(
+$apiInstance = new MauticPlugin\AivieTrelloBundle\Openapi\lib\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -489,7 +489,7 @@ try {
 
 ### Return type
 
-[**\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Card**](../Model/Card.md)
+[**\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Card**](../Model/Card.md)
 
 ### Authorization
 
@@ -507,7 +507,7 @@ try {
 ## `getCardsOnBoard()`
 
 ```php
-getCardsOnBoard($id, $fields, $attachments, $attachmentFields): \MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Card[]
+getCardsOnBoard($id, $fields, $attachments, $attachmentFields): \MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Card[]
 ```
 
 Get Cards on a Board
@@ -522,17 +522,17 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: apiToken
-$config = MauticPlugin\MauticTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+$config = MauticPlugin\AivieTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = MauticPlugin\MauticTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+// $config = MauticPlugin\AivieTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
 
 // Configure API key authorization: appKey
-$config = MauticPlugin\MauticTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKey('key', 'YOUR_API_KEY');
+$config = MauticPlugin\AivieTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKey('key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = MauticPlugin\MauticTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKeyPrefix('key', 'Bearer');
+// $config = MauticPlugin\AivieTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKeyPrefix('key', 'Bearer');
 
 
-$apiInstance = new MauticPlugin\MauticTrelloBundle\Openapi\lib\Api\DefaultApi(
+$apiInstance = new MauticPlugin\AivieTrelloBundle\Openapi\lib\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -562,7 +562,7 @@ try {
 
 ### Return type
 
-[**\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Card[]**](../Model/Card.md)
+[**\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Card[]**](../Model/Card.md)
 
 ### Authorization
 
@@ -580,7 +580,7 @@ try {
 ## `getLists()`
 
 ```php
-getLists($boardId, $cards, $filter, $fields): \MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\TrelloList[]
+getLists($boardId, $cards, $filter, $fields): \MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\TrelloList[]
 ```
 
 
@@ -595,17 +595,17 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: apiToken
-$config = MauticPlugin\MauticTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+$config = MauticPlugin\AivieTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = MauticPlugin\MauticTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+// $config = MauticPlugin\AivieTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
 
 // Configure API key authorization: appKey
-$config = MauticPlugin\MauticTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKey('key', 'YOUR_API_KEY');
+$config = MauticPlugin\AivieTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKey('key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = MauticPlugin\MauticTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKeyPrefix('key', 'Bearer');
+// $config = MauticPlugin\AivieTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKeyPrefix('key', 'Bearer');
 
 
-$apiInstance = new MauticPlugin\MauticTrelloBundle\Openapi\lib\Api\DefaultApi(
+$apiInstance = new MauticPlugin\AivieTrelloBundle\Openapi\lib\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -635,7 +635,7 @@ try {
 
 ### Return type
 
-[**\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\TrelloList[]**](../Model/TrelloList.md)
+[**\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\TrelloList[]**](../Model/TrelloList.md)
 
 ### Authorization
 
@@ -653,7 +653,7 @@ try {
 ## `getMember()`
 
 ```php
-getMember($id, $fields): \MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Member
+getMember($id, $fields): \MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Member
 ```
 
 Get a Member
@@ -668,17 +668,17 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: apiToken
-$config = MauticPlugin\MauticTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+$config = MauticPlugin\AivieTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = MauticPlugin\MauticTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+// $config = MauticPlugin\AivieTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
 
 // Configure API key authorization: appKey
-$config = MauticPlugin\MauticTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKey('key', 'YOUR_API_KEY');
+$config = MauticPlugin\AivieTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKey('key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = MauticPlugin\MauticTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKeyPrefix('key', 'Bearer');
+// $config = MauticPlugin\AivieTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKeyPrefix('key', 'Bearer');
 
 
-$apiInstance = new MauticPlugin\MauticTrelloBundle\Openapi\lib\Api\DefaultApi(
+$apiInstance = new MauticPlugin\AivieTrelloBundle\Openapi\lib\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -704,7 +704,7 @@ try {
 
 ### Return type
 
-[**\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Member**](../Model/Member.md)
+[**\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Member**](../Model/Member.md)
 
 ### Authorization
 
@@ -722,7 +722,7 @@ try {
 ## `updateCard()`
 
 ```php
-updateCard($id, $name, $desc, $closed, $idList, $idBoard, $pos, $due, $start, $dueComplete, $subscribed, $idMembers, $idLabels, $idAttachmentCover): \MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Card
+updateCard($id, $name, $desc, $closed, $idList, $idBoard, $pos, $due, $start, $dueComplete, $subscribed, $idMembers, $idLabels, $idAttachmentCover): \MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Card
 ```
 
 Update a Card
@@ -737,17 +737,17 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: apiToken
-$config = MauticPlugin\MauticTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+$config = MauticPlugin\AivieTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = MauticPlugin\MauticTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+// $config = MauticPlugin\AivieTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
 
 // Configure API key authorization: appKey
-$config = MauticPlugin\MauticTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKey('key', 'YOUR_API_KEY');
+$config = MauticPlugin\AivieTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKey('key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = MauticPlugin\MauticTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKeyPrefix('key', 'Bearer');
+// $config = MauticPlugin\AivieTrelloBundle\Openapi\lib\Configuration::getDefaultConfiguration()->setApiKeyPrefix('key', 'Bearer');
 
 
-$apiInstance = new MauticPlugin\MauticTrelloBundle\Openapi\lib\Api\DefaultApi(
+$apiInstance = new MauticPlugin\AivieTrelloBundle\Openapi\lib\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -759,7 +759,7 @@ $desc = 'desc_example'; // string | The new description for the card
 $closed = True; // bool | Whether the card should be archived (closed true)
 $idList = 'idList_example'; // string | The ID of the list the card should be in
 $idBoard = 'idBoard_example'; // string | The ID of the board the card should be on
-$pos = new \MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\UpdateCardPosParameter(); // \MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\UpdateCardPosParameter | The position of the card in its list. top, bottom, or a positive float
+$pos = new \MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\UpdateCardPosParameter(); // \MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\UpdateCardPosParameter | The position of the card in its list. top, bottom, or a positive float
 $due = new \DateTime('2013-10-20T19:20:30+01:00'); // \DateTime | When the card is due, or null
 $start = new \DateTime('2013-10-20T19:20:30+01:00'); // \DateTime | The start date of a card, or null
 $dueComplete = True; // bool | Whether the status of the card is complete
@@ -786,7 +786,7 @@ try {
 | **closed** | **bool**| Whether the card should be archived (closed true) | [optional] |
 | **idList** | **string**| The ID of the list the card should be in | [optional] |
 | **idBoard** | **string**| The ID of the board the card should be on | [optional] |
-| **pos** | [**\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\UpdateCardPosParameter**](../Model/.md)| The position of the card in its list. top, bottom, or a positive float | [optional] |
+| **pos** | [**\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\UpdateCardPosParameter**](../Model/.md)| The position of the card in its list. top, bottom, or a positive float | [optional] |
 | **due** | **\DateTime**| When the card is due, or null | [optional] |
 | **start** | **\DateTime**| The start date of a card, or null | [optional] |
 | **dueComplete** | **bool**| Whether the status of the card is complete | [optional] |
@@ -797,7 +797,7 @@ try {
 
 ### Return type
 
-[**\MauticPlugin\MauticTrelloBundle\Openapi\lib\Model\Card**](../Model/Card.md)
+[**\MauticPlugin\AivieTrelloBundle\Openapi\lib\Model\Card**](../Model/Card.md)
 
 ### Authorization
 

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace MauticPlugin\MauticTrelloBundle\Form;
+namespace MauticPlugin\AivieTrelloBundle\Form;
 
-use MauticPlugin\MauticTrelloBundle\Service\TrelloApiService;
+use MauticPlugin\AivieTrelloBundle\Service\TrelloApiService;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;

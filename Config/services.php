@@ -15,6 +15,6 @@ return static function (ContainerConfigurator $configurator) {
     $excludes = [
         'Controller/Api/Request',  // Request DTOs are created via fromArray(), not services
     ];
-    $services->load('MauticPlugin\\MauticTrelloBundle\\', '../')
+    $services->load('MauticPlugin\\AivieTrelloBundle\\', '../')
         ->exclude('../{'.implode(',', array_merge(MauticCoreExtension::DEFAULT_EXCLUDES, $excludes)).'}');
 };

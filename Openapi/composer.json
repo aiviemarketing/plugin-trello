@@ -30,9 +30,9 @@
         "friendsofphp/php-cs-fixer": "^3.5"
     },
     "autoload": {
-        "psr-4": { "MauticPlugin\\MauticTrelloBundle\\Openapi\\lib\\" : "lib/" }
+        "psr-4": { "MauticPlugin\\AivieTrelloBundle\\Openapi\\lib\\" : "lib/" }
     },
     "autoload-dev": {
-        "psr-4": { "MauticPlugin\\MauticTrelloBundle\\Openapi\\lib\\Test\\" : "test/" }
+        "psr-4": { "MauticPlugin\\AivieTrelloBundle\\Openapi\\lib\\Test\\" : "test/" }
     }
 }

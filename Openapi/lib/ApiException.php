@@ -2,7 +2,7 @@
 
 
 /**
- * Mautic Trello API.
+ * Aivie Trello API.
  *
  * Create or update a card via the Trello API
  *
@@ -17,7 +17,7 @@
  * Do not edit the class manually.
  */
 
-namespace MauticPlugin\MauticTrelloBundle\Openapi\lib;
+namespace MauticPlugin\AivieTrelloBundle\Openapi\lib;
 
 /**
  * ApiException Class Doc Comment.

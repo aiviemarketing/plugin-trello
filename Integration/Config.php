@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace MauticPlugin\MauticTrelloBundle\Integration;
+namespace MauticPlugin\AivieTrelloBundle\Integration;
 
 use Mautic\IntegrationsBundle\Exception\IntegrationNotFoundException;
 use Mautic\IntegrationsBundle\Helper\IntegrationsHelper;
@@ -51,7 +51,7 @@ class Config
      */
     public function getIntegrationEntity(): Integration
     {
-        $integrationObject = $this->integrationsHelper->getIntegration(TrelloIntegration::NAME);
+        $integrationObject = $this->integrationsHelper->getIntegration(AivieTrelloIntegration::NAME);
 
         return $integrationObject->getIntegrationConfiguration();
     }

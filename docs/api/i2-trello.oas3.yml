@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: Mautic Trello API
+  title: Aivie Trello API
   description: Create or update a card via the Trello API
   version: 0.1.1
 servers:
