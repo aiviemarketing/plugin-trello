@@ -1,5 +1,13 @@
 # Changelog
 
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+### [2.0.1](https://github.com/aiviemarketing/plugin-trello/compare/v1.1.0...v2.0.1) (2026-05-28)
+
+
+### Bug Fixes
+
+* create cards for users without a stage, select correct list based on stage name ([ec0889c](https://github.com/aiviemarketing/plugin-trello/commit/ec0889cbe40677a836248a65b68cce7cd0866acc))
 
 ## 1.1.0 (2026-03-08)
 
