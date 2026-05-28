@@ -26,7 +26,7 @@ jobs:
   release:
     runs-on: ubuntu-latest
     env:
-      RELEASE_BRANCH: ${{ vars.RELEASE_BRANCH || 'main' }}
+      RELEASE_BRANCH: ${{ vars.RELEASE_BRANCH || github.ref_name }}
 
     steps:
       - name: Checkout

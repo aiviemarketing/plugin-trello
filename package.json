@@ -9,9 +9,9 @@
     "standard-version": "^9.5.0"
   },
   "scripts": {
-    "release:patch": "gh workflow run 'Release' -r main -f bump=patch -f post_to_slack=true",
-    "release:minor": "gh workflow run 'Release' -r main -f bump=minor -f post_to_slack=true",
-    "release:major": "gh workflow run 'Release' -r main -f bump=major -f post_to_slack=true",
+    "release:patch": "gh workflow run 'Release' -r 6.x -f bump=patch -f post_to_slack=true",
+    "release:minor": "gh workflow run 'Release' -r 6.x -f bump=minor -f post_to_slack=true",
+    "release:major": "gh workflow run 'Release' -r 6.x -f bump=major -f post_to_slack=true",
     "release": "standard-version",
     "release:dry-run": "standard-version --dry-run",
     "start-mock-server": "prism mock -d docs/api/i2-trello.oas3.yml",
