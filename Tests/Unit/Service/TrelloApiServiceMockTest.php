@@ -40,7 +40,7 @@ class TrelloApiServiceMockTest extends TestCase
          * @phpstan-ignore-next-line
          */
         $this->apiService = $this->getMockBuilder(TrelloApiService::class)
-            ->setMethods(['getApi', 'getFavouriteBoard', 'getListsOnBoard'])
+            ->onlyMethods(['getApi', 'getFavouriteBoard', 'getListsOnBoard'])
             ->setConstructorArgs(
                 [
                     $this->createMock(CoreParametersHelper::class),
