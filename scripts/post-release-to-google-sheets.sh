@@ -38,34 +38,45 @@ if [[ -z "${GITHUB_REPOSITORY:-}" ]]; then
   exit 1
 fi
 
+RELEASE_NOTES="$(cat "$RELEASE_NOTES_FILE")"
 RELEASE_URL="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/releases/tag/${TAG_NAME}"
 CHANGELOG_URL="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/blob/${DEFAULT_BRANCH}/CHANGELOG.md"
 COMPARE_URL="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/commits/${DEFAULT_BRANCH}"
 
-jq -n \
-  --rawfile release_notes "$RELEASE_NOTES_FILE" \
-  --arg token "$SHEETS_WEBHOOK_TOKEN" \
-  --arg tag_name "$TAG_NAME" \
-  --arg repository "$GITHUB_REPOSITORY" \
-  --arg repo "$GITHUB_REPOSITORY" \
-  --arg branch "$DEFAULT_BRANCH" \
-  --arg version "$VERSION_NUMBER" \
-  --arg release_url "$RELEASE_URL" \
-  --arg tagUrl "$RELEASE_URL" \
-  --arg changelogUrl "$CHANGELOG_URL" \
-  --arg compare_url "$COMPARE_URL" \
-  '{
-    token: $token,
-    tag_name: $tag_name,
-    repository: $repository,
-    repo: $repo,
-    branch: $branch,
-    version: $version,
-    release_url: $release_url,
-    tagUrl: $tagUrl,
-    changelogUrl: $changelogUrl,
-    compare_url: $compare_url,
-    release_notes: $release_notes,
-    notes: $release_notes
-  }' \
-  | curl -fsSL -H "Content-Type: application/json" --data @- "$SHEETS_WEBHOOK_URL"
+response="$(
+  jq -n \
+    --arg token "$SHEETS_WEBHOOK_TOKEN" \
+    --arg tag_name "$TAG_NAME" \
+    --arg repository "$GITHUB_REPOSITORY" \
+    --arg repo "$GITHUB_REPOSITORY" \
+    --arg branch "$DEFAULT_BRANCH" \
+    --arg version "$VERSION_NUMBER" \
+    --arg release_url "$RELEASE_URL" \
+    --arg tagUrl "$RELEASE_URL" \
+    --arg changelogUrl "$CHANGELOG_URL" \
+    --arg compare_url "$COMPARE_URL" \
+    --arg release_notes "$RELEASE_NOTES" \
+    '{
+      token: $token,
+      tag_name: $tag_name,
+      repository: $repository,
+      repo: $repo,
+      branch: $branch,
+      version: $version,
+      release_url: $release_url,
+      tagUrl: $tagUrl,
+      changelogUrl: $changelogUrl,
+      compare_url: $compare_url,
+      release_notes: $release_notes,
+      notes: $release_notes
+    }' \
+    | curl -fsSL -H "Content-Type: application/json" --data @- "$SHEETS_WEBHOOK_URL"
+)"
+
+echo "$response"
+
+if ! jq -e '.ok == true' >/dev/null 2>&1 <<< "$response"; then
+  error="$(jq -r '.error // "unknown error"' <<< "$response" 2>/dev/null || echo "unknown error")"
+  echo "Google Sheets webhook failed: $error" >&2
+  exit 1
+fi
