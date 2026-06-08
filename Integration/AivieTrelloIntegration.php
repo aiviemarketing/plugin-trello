@@ -18,7 +18,7 @@ class AivieTrelloIntegration extends BasicIntegration implements BasicInterface
     use ConfigurationTrait;
 
     public const NAME         = 'AivieTrello';
-    public const DISPLAY_NAME = 'Aivie Trello';
+    public const DISPLAY_NAME = 'Trello';
 
     public function getName(): string
     {
