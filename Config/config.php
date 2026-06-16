@@ -8,7 +8,7 @@ use MauticPlugin\AivieTrelloBundle\Integration\AivieTrelloIntegration;
 return [
     'name'        => 'Trello',
     'description' => 'Create Trello cards from Mautic contacts',
-    'version'     => '2.0.3',
+    'version'     => '2.0.4',
     'author'      => 'Aivie',
     'routes'      => [
         'main' => [
