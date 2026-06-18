@@ -1,20 +1,8 @@
-{% block _config_apiconfig_widget %}
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            <h3 class="panel-title">{{ 'mautic.config.tab.apiconfig'|trans }}</h3>
-        </div>
-        <br>
-        <br>
-        <br>
-        <br>
-        <div class="panel-body">
-            {% for f in form.children %}
-                <div class="row">
-                    <div class="col-md-6">
-                        {{ form_row(f) }}
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
-    </div>
+{% block _config_trello_config_widget %}
+<h4 class="fw-sb mt-48 mb-xs">{{ 'mautic.config.tab.trello_config'|trans }}</h4>
+<div class="row">
+    {% for f in form.children %}
+        <div class="col-md-6">{{ form_row(f) }}</div>
+    {% endfor %}
+</div>
 {% endblock %}
