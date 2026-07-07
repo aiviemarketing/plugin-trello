@@ -26,7 +26,7 @@ jobs:
   release:
     runs-on: ubuntu-latest
     env:
-      RELEASE_BRANCH: ${{ vars.RELEASE_BRANCH || github.ref_name }}
+      RELEASE_BRANCH: ${{ vars.RELEASE_BRANCH || 'main' }}
 
     steps:
       - name: Checkout
@@ -79,6 +79,7 @@ jobs:
           fi
 
       - name: Capture new version
+        if: always()
         run: echo "NEW_VERSION=$(jq -r .version package.json)" >> "$GITHUB_ENV"
 
       - name: Sync version files
@@ -86,27 +87,42 @@ jobs:
           chmod +x scripts/sync-version-files.js
           ./scripts/sync-version-files.js "$NEW_VERSION"
 
-      - name: Commit and tag release
+      - name: Detect release changes
+        id: release_changes
         run: |
-          for file in CHANGELOG.md package.json package-lock.json composer.json Config/config.php; do
-            [ -f "$file" ] && git add "$file"
-          done
-          git commit -m "chore(release): v${NEW_VERSION}"
-          git tag "v${NEW_VERSION}"
+          if git diff --quiet; then
+            echo "has_changes=false" >> "$GITHUB_OUTPUT"
+            echo "No release changes detected. Skipping release, Google Sheets, and Slack."
+          else
+            echo "has_changes=true" >> "$GITHUB_OUTPUT"
+          fi
 
       - name: Extract release notes
+        if: steps.release_changes.outputs.has_changes == 'true'
         run: |
           chmod +x scripts/extract-release-notes.sh
           ./scripts/extract-release-notes.sh CHANGELOG.md > release_notes.md
 
       - name: Get release tag
         id: tag
+        if: steps.release_changes.outputs.has_changes == 'true'
         run: echo "name=v${NEW_VERSION}" >> "$GITHUB_OUTPUT"
 
+      - name: Commit and tag release
+        if: steps.release_changes.outputs.has_changes == 'true'
+        run: |
+          for file in CHANGELOG.md package.json package-lock.json composer.json Config/config.php; do
+            [ -f "$file" ] && git add "$file"
+          done
+          git commit -m "chore(release): v${NEW_VERSION}"
+          git tag -a "v${NEW_VERSION}" -m "v${NEW_VERSION}"
+
       - name: Push commit and tag
-        run: git push --follow-tags origin "HEAD:${RELEASE_BRANCH}"
+        if: steps.release_changes.outputs.has_changes == 'true'
+        run: git push origin "HEAD:${RELEASE_BRANCH}" "refs/tags/v${NEW_VERSION}"
 
       - name: Create GitHub Release
+        if: steps.release_changes.outputs.has_changes == 'true'
         uses: softprops/action-gh-release@v3
         with:
           tag_name: ${{ steps.tag.outputs.name }}
@@ -118,6 +134,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Post release to Google Sheets
+        if: steps.release_changes.outputs.has_changes == 'true'
         env:
           SHEETS_WEBHOOK_URL: ${{ vars.SHEETS_WEBHOOK_URL }}
           SHEETS_WEBHOOK_TOKEN: ${{ secrets.SHEETS_WEBHOOK_TOKEN }}
@@ -130,7 +147,7 @@ jobs:
           ./scripts/post-release-to-google-sheets.sh release_notes.md
 
       - name: Post release notes to Slack
-        if: inputs.post_to_slack
+        if: steps.release_changes.outputs.has_changes == 'true' && inputs.post_to_slack
         continue-on-error: true
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}

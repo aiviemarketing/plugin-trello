@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Synced release helper. Edit the root bin/aivie/scripts copy, then run
+// Synced release helper. Edit the plugin scaffold copy, then run
 // bin/aivie/sync-release-scripts.sh to update plugin scripts/ copies.
 
 const fs = require('fs');
