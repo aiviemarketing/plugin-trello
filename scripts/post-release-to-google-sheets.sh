@@ -15,6 +15,17 @@ if [[ ! -f "$RELEASE_NOTES_FILE" ]]; then
   exit 1
 fi
 
+# Maintenance-only releases produce notes that contain nothing beyond the
+# version heading line(s); those should not be posted to the changelog sheet.
+has_release_content() {
+  grep -vE '^#{2,3}[[:space:]]+\[?[0-9]+\.[0-9]+\.[0-9]+' "$1" | grep -q '[^[:space:]]'
+}
+
+if ! has_release_content "$RELEASE_NOTES_FILE"; then
+  echo "Skipping Google Sheets post: maintenance-only release (no changelog entries)."
+  exit 0
+fi
+
 TAG_NAME="${TAG_NAME:-${VERSION:-${NEW_VERSION:-}}}"
 TAG_NAME="${TAG_NAME#refs/tags/}"
 

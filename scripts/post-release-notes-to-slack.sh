@@ -23,6 +23,17 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
+# Maintenance-only releases produce notes that contain nothing beyond the
+# version heading line(s); those should not be announced.
+has_release_content() {
+  [[ -f "$1" ]] && grep -vE '^#{2,3}[[:space:]]+\[?[0-9]+\.[0-9]+\.[0-9]+' "$1" | grep -q '[^[:space:]]'
+}
+
+if ! has_release_content "$RELEASE_NOTES_FILE"; then
+  echo "Skipping Slack post: maintenance-only release (no changelog entries)."
+  exit 0
+fi
+
 if [[ -z "${GITHUB_REPOSITORY:-}" ]]; then
   echo "GITHUB_REPOSITORY is required" >&2
   exit 1
@@ -97,15 +108,10 @@ header=$(jq -n --arg r "$REPO_NAME" --arg v "$VERSION" \
 divider='{"type":"divider"}'
 link=$(jq -n --arg url "$CHANGELOG_URL" '{type:"section",text:{type:"mrkdwn",text:("<" + $url + "|View full changelog>")}}')
 
-if [[ -s "$RELEASE_NOTES_FILE" ]]; then
-  notes_text="$(format_release_notes_for_slack "$RELEASE_NOTES_FILE")"
-  notes_block=$(jq -n --arg n "$notes_text" '{type:"section",text:{type:"mrkdwn",text:$n}}')
-  payload=$(jq -n --argjson h "$header" --argjson d "$divider" --argjson n "$notes_block" --argjson l "$link" \
-    '{blocks: [$h, $d, $n, $l]}')
-else
-  payload=$(jq -n --argjson h "$header" --argjson d "$divider" --argjson l "$link" \
-    '{blocks: [$h, $d, $l]}')
-fi
+notes_text="$(format_release_notes_for_slack "$RELEASE_NOTES_FILE")"
+notes_block=$(jq -n --arg n "$notes_text" '{type:"section",text:{type:"mrkdwn",text:$n}}')
+payload=$(jq -n --argjson h "$header" --argjson d "$divider" --argjson n "$notes_block" --argjson l "$link" \
+  '{blocks: [$h, $d, $n, $l]}')
 
 if [[ "$PREVIEW_MODE" == "true" ]]; then
   jq . <<<"$payload"

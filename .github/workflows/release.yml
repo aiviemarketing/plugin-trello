@@ -90,6 +90,7 @@ jobs:
       - name: Detect release changes
         id: release_changes
         run: |
+          # Skip release/tag/notifications if standard-version produced no file changes.
           if git diff --quiet; then
             echo "has_changes=false" >> "$GITHUB_OUTPUT"
             echo "No release changes detected. Skipping release, Google Sheets, and Slack."
