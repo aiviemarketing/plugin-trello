@@ -1,6 +1,6 @@
 {
   "name": "aivie-trello-bundle",
-  "version": "7.0.5",
+  "version": "7.0.6",
   "author": "Aivie",
   "devDependencies": {
     "@commitlint/cli": "^20.5.0",
