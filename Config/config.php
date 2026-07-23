@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use MauticPlugin\AivieTrelloBundle\Integration\Support\ConfigSupport;
 use MauticPlugin\AivieTrelloBundle\Integration\AivieTrelloIntegration;
+use MauticPlugin\AivieTrelloBundle\Integration\Support\ConfigSupport;
 
 return [
     'name'        => 'Trello',
