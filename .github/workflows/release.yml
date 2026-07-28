@@ -112,7 +112,7 @@ jobs:
       - name: Commit and tag release
         if: steps.release_changes.outputs.has_changes == 'true'
         run: |
-          for file in CHANGELOG.md package.json package-lock.json composer.json Config/config.php; do
+          for file in CHANGELOG.md package.json package-lock.json Config/config.php; do
             [ -f "$file" ] && git add "$file"
           done
           git commit -m "chore(release): v${NEW_VERSION}"

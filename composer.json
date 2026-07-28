@@ -2,7 +2,6 @@
   "name": "aiviemarketing/plugin-trello",
   "description": "Add Trello cards from Mautic.",
   "type": "mautic-plugin",
-  "version": "7.0.19",
   "license": "GPL-3.0-or-later",
   "authors": [
     {

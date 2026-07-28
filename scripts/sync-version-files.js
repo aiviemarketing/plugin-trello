@@ -18,7 +18,6 @@ if (!/^[0-9]+\.[0-9]+\.[0-9]+([.-].+)?$/.test(version)) {
 
 syncPackageJson(version);
 syncPackageLock(version);
-syncComposerJson(version);
 syncMauticConfig(version);
 verifyVersions(version);
 
@@ -63,18 +62,6 @@ function syncPackageLock(nextVersion) {
   writeJson(lockPath, packageLock);
 }
 
-function syncComposerJson(nextVersion) {
-  const composerPath = path.join(root, 'composer.json');
-
-  if (!fs.existsSync(composerPath)) {
-    return;
-  }
-
-  const composerJson = JSON.parse(fs.readFileSync(composerPath, 'utf8'));
-  composerJson.version = nextVersion;
-  writeJson(composerPath, composerJson);
-}
-
 function syncMauticConfig(nextVersion) {
   const configPath = path.join(root, 'Config/config.php');
 
@@ -103,10 +90,6 @@ function verifyVersions(expectedVersion) {
     if (packageLock.packages && packageLock.packages['']) {
       assertVersion('package-lock.json packages[""]', packageLock.packages[''].version, expectedVersion);
     }
-  }
-
-  if (fs.existsSync(path.join(root, 'composer.json'))) {
-    assertVersion('composer.json', readJsonVersion('composer.json'), expectedVersion);
   }
 
   const configPath = path.join(root, 'Config/config.php');
