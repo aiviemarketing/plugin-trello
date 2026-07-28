@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.0.20](https://github.com/aiviemarketing/plugin-trello/compare/v7.0.19...v7.0.20) (2026-07-28)
+
+
+### Bug Fixes
+
+* **repo:** support Mautic 7 Composer installs ([b1bb7cb](https://github.com/aiviemarketing/plugin-trello/commit/b1bb7cb3a8077bd795045dfa0f32b222155d9704))
+
 ### [7.0.19](https://github.com/aiviemarketing/plugin-trello/compare/v7.0.18...v7.0.19) (2026-07-27)
 
 ### [7.0.18](https://github.com/aiviemarketing/plugin-trello/compare/v7.0.17...v7.0.18) (2026-07-27)
