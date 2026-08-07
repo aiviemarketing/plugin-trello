@@ -15,7 +15,7 @@ if [[ ! -f "$CHANGELOG_FILE" ]]; then
   exit 1
 fi
 
-awk '
+release_notes="$(awk '
   function is_version_heading(line) {
     if (line ~ /^##[[:space:]]+\[?[0-9]+\.[0-9]+\.[0-9]+/) return 1
     if (line ~ /^###[[:space:]]+\[?[0-9]+\.[0-9]+\.[0-9]+/) return 1
@@ -24,6 +24,14 @@ awk '
   is_version_heading($0) {
     if (started) exit
     started = 1
+    next
   }
   started { print }
-' "$CHANGELOG_FILE" | sed '${/^[[:space:]]*$/d;}'
+' "$CHANGELOG_FILE" | sed '${/^[[:space:]]*$/d;}')"
+
+if [[ -z "$release_notes" ]]; then
+  printf '%s\n' 'Maintenance release. See the commit history for details.'
+  exit 0
+fi
+
+printf '%s\n' "$release_notes"
