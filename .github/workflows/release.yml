@@ -14,6 +14,10 @@ on:
         required: false
         default: false
         type: boolean
+      source_sha:
+        description: "Full source commit SHA that this release must directly follow"
+        required: true
+        type: string
 
 permissions:
   contents: write
@@ -36,9 +40,14 @@ jobs:
           ref: ${{ env.RELEASE_BRANCH }}
 
       - name: Sync with origin branch
+        env:
+          SOURCE_SHA: ${{ inputs.source_sha }}
         run: |
+          set -euo pipefail
+          [[ "${SOURCE_SHA}" =~ ^[0-9a-fA-F]{40}$ ]]
           git fetch origin "${RELEASE_BRANCH}"
           git reset --hard "origin/${RELEASE_BRANCH}"
+          [[ "$(git rev-parse HEAD)" == "${SOURCE_SHA}" ]]
 
       - name: Use Node
         uses: actions/setup-node@v6
