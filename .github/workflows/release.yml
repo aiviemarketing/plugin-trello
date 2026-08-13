@@ -118,18 +118,28 @@ jobs:
         if: steps.release_changes.outputs.has_changes == 'true'
         run: echo "name=v${NEW_VERSION}" >> "$GITHUB_OUTPUT"
 
-      - name: Commit and tag release
+      - name: Commit release
         if: steps.release_changes.outputs.has_changes == 'true'
         run: |
+          git fetch --tags --force origin
+          if git rev-parse -q --verify "refs/tags/v${NEW_VERSION}" >/dev/null; then
+            echo "Release tag v${NEW_VERSION} already exists. Reconcile it with ${RELEASE_BRANCH} before rerunning this workflow." >&2
+            exit 1
+          fi
           for file in CHANGELOG.md package.json package-lock.json Config/config.php; do
             [ -f "$file" ] && git add "$file"
           done
           git commit -m "chore(release): v${NEW_VERSION}"
-          git tag -a "v${NEW_VERSION}" -m "v${NEW_VERSION}"
 
-      - name: Push commit and tag
+      - name: Push release commit
         if: steps.release_changes.outputs.has_changes == 'true'
-        run: git push origin "HEAD:${RELEASE_BRANCH}" "refs/tags/v${NEW_VERSION}"
+        run: git push origin "HEAD:${RELEASE_BRANCH}"
+
+      - name: Tag and push release
+        if: steps.release_changes.outputs.has_changes == 'true'
+        run: |
+          git tag -a "v${NEW_VERSION}" -m "v${NEW_VERSION}"
+          git push origin "refs/tags/v${NEW_VERSION}"
 
       - name: Create GitHub Release
         if: steps.release_changes.outputs.has_changes == 'true'
