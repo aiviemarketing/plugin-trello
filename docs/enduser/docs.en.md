@@ -9,50 +9,57 @@ taxonomy:
         - Docs
 ---
 
--------------------
+## Mautic Trello plugin
 
-## Mautic - Trello plugin
+The plugin creates Trello cards from Mautic contact records. It can be used for sales follow-ups, task handovers, and workflows that are managed in Trello.
 
-This plugin can create a Trello card based on a contact
+## Requirements
 
-### Requirements
+* PHP 8.1 or newer.
+* Mautic 6 or 7.
+* A Trello account with access to the board used by the integration.
 
-- Mautic V3.0.2
-- Trello
+## Installation
+
+Run these commands from the root directory of your Mautic project:
+
+```bash
+composer require aiviemarketing/mautic-trello:^7.0
+php bin/console mautic:plugins:reload
+php bin/console cache:clear
+```
 
 ## Authorize the plugin
 
-**Attention**:
-You might want to use a separate Trello user for the authorization process. Everyone who has access to your Mautic instance will be able to see the names of all the boards and lists the user used in the authorization process has access to. Also, they can create cards in those boards and lists.
+> [!IMPORTANT]
+> Consider using a dedicated Trello account. Mautic users who can access the integration may be able to see the names of every board and list available to the connected Trello account and create cards in them.
 
-1. Open Trello plugin settings (Settings > Plugins)\
-   <img src="media/trello-plugin-settings-en.png" alt="Trello Plugin Settings" width="400"/>
-2. Open [https://trello.com/app-key][trello app key] in a separate window.\
-   <img src="media/trello-app-key-en.png" alt="Get auth keys on Trello" width="400"/>
-3. Copy the displayed key and add it to the plugin settings
-4. Click "Generate a Token" on the opened [Trello developer site][trello app key].
-5. Follow the Trello authorization process
-6. Copy the displayed token and add it to the Trello plugin settings
+1. Open **Settings > Plugins** and select the Trello plugin.
+   <img src="media/trello-plugin-settings-en.png" alt="Trello plugin settings" width="400"/>
+2. Open the [Trello developer page][trello app key] in a separate window.
+   <img src="media/trello-app-key-en.png" alt="Trello API key and token" width="400"/>
+3. Copy the API key into the plugin settings.
+4. Select **Generate a Token** on the Trello developer page.
+5. Complete the Trello authorization process.
+6. Copy the generated token into the plugin settings.
+7. Set **Published** to **Yes** and save the plugin.
 
-Don't forget to switch *Published* to *Yes* and save the configuration.
+## Configure the board
 
-## Configure the plugin
+Open **Settings > Configuration > Trello** and select the Trello board used by the integration. The plugin currently connects to one board at a time. You can select any list on that board when creating a card.
 
-Go to "your plugins and open the Trello settings. Here you have to choose which of your Trello boards you can to use for Mautic. Currently the plugin is limited to only one Trello board being with Mautic.
-## Create Trello Card
+## Create a Trello card
 
-1. Go to "Contacts"
-2. Click on the contact you want to add to your Trello list
-3. Click on the small arrow to display the advanced actions.  
-<img src="media/trello-plugin-add-card.png" alt="Get auth keys on Trello" width="400"/>
+1. Open **Contacts** in Mautic.
+2. Open the contact you want to add to Trello.
+3. Open the contact actions.
+   <img src="media/trello-plugin-add-card.png" alt="Contact actions in Mautic" width="400"/>
+4. Select **Create Trello Card**.
+5. Enter the card details.
+6. Select a Trello list and optionally set a due date.
+7. Select **Save**.
+   <img src="media/trello-plugin-add-card-info-en.png" alt="Create a Trello card from a Mautic contact" width="400"/>
 
-5. Click "Create Trello Card"
-6. Enter all desired information you want to have displayed on the Trello card. 
-7. Choose a List you can to add this Card to and if needed, you can define a Due date.
-8. Click "Save"  
-<img src="media/trello-plugin-add-card-info-en.png" alt="Add Trello card information" width="400"/>
-
-**Note:**
-Like stated before, currently only lists from one single board can be selected. The board can be changed via Settings > Configuration > Trello.
+The configured board can be changed at any time under **Settings > Configuration > Trello**.
 
 [trello app key]: <https://trello.com/app-key>

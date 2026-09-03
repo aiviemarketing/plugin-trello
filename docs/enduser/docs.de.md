@@ -1,42 +1,54 @@
-## Mautic - Trello Plugin
+## Mautic Trello Plugin
 
-Dieses Plugin erstellt Trello-Karten basierend auf einem Mautic Kontakt.
+Das Plugin erstellt Trello Karten aus Mautic Kontakten. Es eignet sich für Verkaufsaufgaben, Follow-ups und die Übergabe von Aufgaben an bestehende Trello Workflows.
 
 ## Anforderungen
 
-- Mautic V3.0.2
-- Trello
+* PHP 8.1 oder neuer.
+* Mautic 6 oder 7.
+* Ein Trello Konto mit Zugriff auf das Board der Integration.
 
-## Autorisieren Sie das Plugin
+## Installation
 
-**Achtung:**
-Für den Autorisierungsprozess des Plugin empfehlen wir, einen separaten Trello-Benutzer als Ihren normalen Benutzer zu verwenden. Jeder mit Zugang zu Ihrer Mautic-Instanz wird in der Lage sein, die Namen aller Trello Boards und Listen zu sehen, auf die dieser Trello-Benutzer Zugriff hat. Außerdem können über Mautic neue Karten in diesen Trello Boards und Listen erstellt werden. Die einzelnen Trello-Karten können allerdings nicht über Mautic eingesehen werden.
+Die folgenden Befehle im Hauptverzeichnis der Mautic Installation ausführen:
 
-1. Öffnen sie die Trello-Plugin-Einstellungen (Einstellungen > Plugins)\
-   <img src="media/trello-plugin-settings-en.png" alt="Trello Plugin Settings" width="400"/>
-2. Öffnen sie [https://trello.com/app-key][trello app key] in einem separaten Fenster.\
-   <img src="media/trello-app-key-en.png" alt="Get auth keys on Trello" width="400"/>
-3. Kopieren sie den angezeigten Schlüssel (Key) und fügen Sie ihn zu den Plugin-Einstellungen hinzu.
-4. Klicken Sie auf "Token" generieren unter [https://trello.com/app-key][trello app key]
-5. Folgen Sie dem Autorisierungsprozess bei Trello
-6. Kopieren Sie das angezeigte Token und fügen Sie es zu den Einstellungen des Trello-Plugins hinzu
+```bash
+composer require aiviemarketing/mautic-trello:^7.0
+php bin/console mautic:plugins:reload
+php bin/console cache:clear
+```
 
-Vergessen Sie nicht, *Veröffentlicht* auf *Ja* umzuschalten und die Konfiguration zu speichern.
+## Plugin autorisieren
 
-## Konfigurieren sie das Plugin
+> [!IMPORTANT]
+> Verwende nach Möglichkeit ein separates Trello Konto. Mautic Benutzer mit Zugriff auf die Integration können möglicherweise die Namen aller Boards und Listen sehen, auf die das verbundene Trello Konto Zugriff hat, und darin Karten erstellen.
 
-Gehen sie zu Ihren Einstellungen und stellen Sie Ihr bevorzugtes Board ein. Derzeit ist das Plugin auf die Verwendung mit nur einem Trello-Board limitiert.
+1. **Einstellungen > Plugins** öffnen und das Trello Plugin auswählen.
+   <img src="media/trello-plugin-settings-en.png" alt="Einstellungen des Trello Plugins" width="400"/>
+2. Die [Trello Entwicklerseite][trello app key] in einem separaten Fenster öffnen.
+   <img src="media/trello-app-key-en.png" alt="Trello API Key und Token" width="400"/>
+3. Den API Key in die Plugin Einstellungen kopieren.
+4. Auf der Trello Entwicklerseite **Generate a Token** auswählen.
+5. Den Autorisierungsprozess bei Trello abschliessen.
+6. Das generierte Token in die Plugin Einstellungen kopieren.
+7. **Veröffentlicht** auf **Ja** setzen und das Plugin speichern.
+
+## Board konfigurieren
+
+Unter **Einstellungen > Konfiguration > Trello** das Board für die Integration auswählen. Das Plugin verbindet sich derzeit jeweils mit einem Board. Beim Erstellen einer Karte kann jede Liste dieses Boards gewählt werden.
 
 ## Trello Karte erstellen
 
-1. Öffnen sie den Kontakt in der Detailansicht. 
-2. Klicken sie auf den kleinen Pfeil um die erweiterten Aktionen anzuzeigen.\
-<img src="media/trello-plugin-add-card.png" alt="Get auth keys on Trello" width="400"/>
-3. Klicken sie auf "Trello Karte erstellen".
-4. Geben sie alle gewünschten Informationen ein und klicken Sie auf "Speichern".  
-<img src="media/trello-plugin-add-card-info-en.png" alt="Add Trello card information" width="400"/>
+1. **Kontakte** in Mautic öffnen.
+2. Den gewünschten Kontakt öffnen.
+3. Die Kontaktaktionen aufklappen.
+   <img src="media/trello-plugin-add-card.png" alt="Kontaktaktionen in Mautic" width="400"/>
+4. **Trello Karte erstellen** auswählen.
+5. Die Kartendetails eingeben.
+6. Eine Trello Liste auswählen und optional ein Fälligkeitsdatum festlegen.
+7. **Speichern** auswählen.
+   <img src="media/trello-plugin-add-card-info-en.png" alt="Trello Karte aus einem Mautic Kontakt erstellen" width="400"/>
 
-**Hinweis:**
-Aktuell können nur Listen aus einem Board gewählt werden. Das Board kann über Einstellungen > Konfiguration > Trello geändert werden.
+Das konfigurierte Board kann jederzeit unter **Einstellungen > Konfiguration > Trello** geändert werden.
 
 [trello app key]: <https://trello.com/app-key>
