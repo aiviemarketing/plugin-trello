@@ -9,7 +9,6 @@ module.exports = {
         "fix",
         "feat",
         "ux",
-        "obs",
         "chore",
         "perf",
         "revert",
