@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.0.25](https://github.com/aiviemarketing/plugin-trello/compare/v7.0.24...v7.0.25) (2026-10-26)
+
+
+### Features
+
+* **repo:** update Aivie plugins for Mautic 7.2 and PHP 8.5 ([56e3c7b](https://github.com/aiviemarketing/plugin-trello/commit/56e3c7b2a728e2064229516baae307874aea8d16))
+
 ### [7.0.24](https://github.com/aiviemarketing/plugin-trello/compare/v7.0.23...v7.0.24) (2026-09-11)
 
 ### [7.0.23](https://github.com/aiviemarketing/plugin-trello/compare/v7.0.22...v7.0.23) (2026-08-14)
