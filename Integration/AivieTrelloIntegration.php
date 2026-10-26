@@ -6,14 +6,15 @@ namespace MauticPlugin\AivieTrelloBundle\Integration;
 
 use Mautic\IntegrationsBundle\Integration\BasicIntegration;
 use Mautic\IntegrationsBundle\Integration\ConfigurationTrait;
-use Mautic\IntegrationsBundle\Integration\Interfaces\BasicInterface;
 
 /**
  * Class AivieTrelloIntegration.
  *
  * Handles the authorization process, integration configuration, etc.
  */
-class AivieTrelloIntegration extends BasicIntegration implements BasicInterface
+// Config/config.php explicitly registers the basic integration. Support subclasses must not
+// inherit BasicInterface and be auto-tagged as additional basic integrations.
+class AivieTrelloIntegration extends BasicIntegration
 {
     use ConfigurationTrait;
 
