@@ -133,7 +133,7 @@ jobs:
         if: steps.release_changes.outputs.has_changes == 'true'
         run: echo "name=v${NEW_VERSION}" >> "$GITHUB_OUTPUT"
 
-      - name: Commit release
+      - name: Commit and tag release
         if: steps.release_changes.outputs.has_changes == 'true'
         run: |
           git fetch --tags --force origin
@@ -145,16 +145,11 @@ jobs:
             [ -f "$file" ] && git add "$file"
           done
           git commit -m "chore(release): v${NEW_VERSION}"
-
-      - name: Push release commit
-        if: steps.release_changes.outputs.has_changes == 'true'
-        run: git push origin "HEAD:${RELEASE_BRANCH}"
-
-      - name: Tag and push release
-        if: steps.release_changes.outputs.has_changes == 'true'
-        run: |
           git tag -a "v${NEW_VERSION}" -m "v${NEW_VERSION}"
-          git push origin "refs/tags/v${NEW_VERSION}"
+
+      - name: Push release commit and tag atomically
+        if: steps.release_changes.outputs.has_changes == 'true'
+        run: git push --atomic origin "HEAD:${RELEASE_BRANCH}" "refs/tags/v${NEW_VERSION}"
 
       - name: Create GitHub Release
         if: steps.release_changes.outputs.has_changes == 'true'
