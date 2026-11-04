@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.0.27](https://github.com/aiviemarketing/plugin-trello/compare/v7.0.26...v7.0.27) (2026-11-04)
+
+
+### Bug Fixes
+
+* **repo:** honor explicit version bumps ([89c4a0b](https://github.com/aiviemarketing/plugin-trello/commit/89c4a0bcd47846cb1d1991baf4bd8a7e6ca0e47c))
+
 ### [7.0.26](https://github.com/aiviemarketing/plugin-trello/compare/v7.0.25...v7.0.26) (2026-10-27)
 
 ### [7.0.25](https://github.com/aiviemarketing/plugin-trello/compare/v7.0.24...v7.0.25) (2026-10-26)
