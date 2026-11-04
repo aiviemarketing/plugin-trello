@@ -99,17 +99,24 @@ jobs:
       - name: Detect release changes
         id: release_changes
         run: |
-          # Skip release/tag/notifications unless there's a release-worthy commit
-          # since the last tag. Release-worthy is every conventional type except
-          # docs/chore/test, so a type added to commitlint.config.cjs counts
-          # without needing an edit here. Merges and non-conventional subjects
-          # never trigger a release on their own.
+          # Explicit version bumps release every non-empty commit range. Automatic
+          # bumps release only when the range contains a release-worthy conventional
+          # commit. Release-worthy is every conventional type except docs/chore/test,
+          # so a type added to commitlint.config.cjs counts without needing an edit
+          # here. Merges and non-conventional subjects never trigger an automatic
+          # release on their own.
           # standard-version always bumps package.json/CHANGELOG.md, even for
           # ignored-type-only commits or no commits at all, so a plain `git diff`
           # here would never catch an empty release.
           LAST_TAG="$(git tag --merged HEAD --sort=-v:refname | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$' | head -1 || true)"
           if [ -z "$LAST_TAG" ]; then
             echo "has_changes=true" >> "$GITHUB_OUTPUT"
+          elif [ "$(git rev-list --count "${LAST_TAG}..HEAD")" -eq 0 ]; then
+            echo "has_changes=false" >> "$GITHUB_OUTPUT"
+            echo "No commits since ${LAST_TAG}. Skipping release, Google Sheets, and Slack."
+          elif [ "${{ inputs.bump }}" != "auto" ]; then
+            echo "has_changes=true" >> "$GITHUB_OUTPUT"
+            echo "Explicit ${{ inputs.bump }} bump requested for commits since ${LAST_TAG}."
           else
             RELEASE_WORTHY="$(git log "${LAST_TAG}..HEAD" --no-merges --pretty=%s \
               | grep -E '^[a-z]+(\(.+\))?!?:' \
