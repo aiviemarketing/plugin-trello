@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.0.28](https://github.com/aiviemarketing/plugin-trello/compare/v7.0.27...v7.0.28) (2026-11-09)
+
+
+### Bug Fixes
+
+* **plugin:** allow trello cards without a due date ([65006d7](https://github.com/aiviemarketing/plugin-trello/commit/65006d752641b586db689ac9d0289d7951df1d57))
+
 ### [7.0.27](https://github.com/aiviemarketing/plugin-trello/compare/v7.0.26...v7.0.27) (2026-11-04)
 
 
